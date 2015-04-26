@@ -12,8 +12,9 @@
 #import "MGMCoreDataTableViewDataSource.h"
 #import "MGMGridManager.h"
 #import "MGMImageHelper.h"
+#import "MGMAlbumScoresCollectionViewCell.h"
 
-@interface MGMAlbumScoresViewController () <MGMAlbumGridViewDelegate, MGMAlbumScoresViewDelegate>
+@interface MGMAlbumScoresViewController () <UICollectionViewDataSource, UICollectionViewDelegate, MGMAlbumScoresViewDelegate>
 
 @property (strong) NSArray* albumMoids;
 
@@ -21,10 +22,13 @@
 
 @implementation MGMAlbumScoresViewController
 
+#define SCORES_VIEW_CELL_ID @"MGMAlbumScoresViewControllerCellId"
+
 - (void) loadView
 {
     MGMAlbumScoresView* scoresView = [[MGMAlbumScoresView alloc] initWithFrame:[self fullscreenRect]];
-    scoresView.albumGridView.delegate = self;
+    scoresView.collectionView.delegate = self;
+    scoresView.collectionView.dataSource = self;
     scoresView.delegate = self;
 
     self.view = scoresView;
@@ -34,47 +38,15 @@
 {
     MGMAlbumScoresView* scoresView = (MGMAlbumScoresView*)self.view;
 
-    // Setup 25 albums so we can put them into "activity in progress" mode...
-    NSUInteger albumCount = 25;
-    [scoresView.albumGridView setAlbumCount:albumCount detailViewShowing:YES];
-    NSUInteger rowCount = self.ipad ? 4 : 2;
-    CGFloat albumSize = scoresView.albumGridView.frame.size.width / rowCount;
-    NSArray* gridData = [MGMGridManager rectsForRowSize:rowCount defaultRectSize:albumSize count:albumCount];
-
-    for (NSUInteger i = 0; i < albumCount; i++)
-    {
-        NSValue* value = [gridData objectAtIndex:i];
-        CGRect frame = [value CGRectValue];
-        [scoresView.albumGridView setAlbumFrame:frame forRank:i + 1];
-    }
-
+    [scoresView.collectionView registerClass:[MGMAlbumScoresCollectionViewCell class] forCellWithReuseIdentifier:SCORES_VIEW_CELL_ID];
     [scoresView setSelection:MGMAlbumScoresViewSelectionClassicAlbums];
 }
 
 - (void) loadAlbumsForChoice:(NSInteger)choice
 {
-    MGMAlbumScoresView* scoresView = (MGMAlbumScoresView*)self.view;
-    [scoresView.albumGridView setActivityInProgressForAllRanks:YES];
-
     [self dataForChoice:choice completion:^(MGMDaoData* data) {
         NSArray* albumMoids = data.data;
         NSError* fetchError = data.error;
-        
-        // Resize the album view for new data...
-        NSUInteger albumCount = albumMoids.count;
-        [scoresView.albumGridView setAlbumCount:albumCount detailViewShowing:YES];
-        NSUInteger rowCount = self.ipad ? 4 : 2;
-        CGFloat albumSize = scoresView.albumGridView.frame.size.width / rowCount;
-        NSArray* gridData = [MGMGridManager rectsForRowSize:rowCount defaultRectSize:albumSize count:albumCount];
-        
-        for (NSUInteger i = 0; i < albumCount; i++)
-        {
-            NSValue* value = [gridData objectAtIndex:i];
-            CGRect frame = [value CGRectValue];
-            [scoresView.albumGridView setAlbumFrame:frame forRank:i + 1];
-        }
-        
-        [scoresView.albumGridView setActivityInProgressForAllRanks:YES];
         
         if (fetchError && albumMoids)
         {
@@ -109,45 +81,49 @@
     }
 }
 
-- (void) reloadAlbums
-{
-    __block NSUInteger position = 1;
-    for (NSManagedObjectID* albumMoid in self.albumMoids)
-    {
-        MGMAlbum* album = [self.core.coreDataAccess mainThreadVersion:albumMoid];
-        [self renderAlbum:album atPostion:position];
-        position++;
-    }
-}
-
-- (void) renderAlbum:(MGMAlbum*)album atPostion:(NSUInteger)position
+- (void)reloadAlbums
 {
     MGMAlbumScoresView* scoresView = (MGMAlbumScoresView*)self.view;
-    MGMAlbumView* albumView = [scoresView.albumGridView albumViewForRank:position];
-    [self displayAlbum:album inAlbumView:albumView rank:position completion:^(NSError* error) {
-        [self.ui logError:error];
-    }];
+    [scoresView.collectionView reloadData];
 }
 
-#pragma mark -
-#pragma mark MGMAlbumGridViewDelegate
+#pragma mark - UICollectionViewDataSource
 
-- (void) albumPressedWithRank:(NSUInteger)rank
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSManagedObjectID* albumMoid = [self.albumMoids objectAtIndex:rank - 1];
+    return self.albumMoids.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSUInteger index = indexPath.row;
+    NSManagedObjectID* albumMoid = self.albumMoids[index];
+    MGMAlbum* album = [self.core.coreDataAccess mainThreadVersion:albumMoid];
+
+    MGMAlbumScoresCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:SCORES_VIEW_CELL_ID forIndexPath:indexPath];
+    MGMAlbumView *albumView = [[MGMAlbumView alloc] initWithFrame:CGRectMake(25, 25, 150, 150)];
+    cell.albumView = albumView;
+    cell.backgroundColor = [UIColor purpleColor];
+
+    albumView.activityInProgress = YES;
+    [self displayAlbum:album inAlbumView:albumView rank:index + 1 completion:^(NSError* error) {
+        albumView.activityInProgress = NO;
+        [self.ui logError:error];
+    }];
+
+    return cell;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
+{
+    NSManagedObjectID* albumMoid = [self.albumMoids objectAtIndex:indexPath.row - 1];
     MGMAlbum* album = [self.core.coreDataAccess mainThreadVersion:albumMoid];
     [self.albumSelectionDelegate albumSelected:album];
 }
 
-- (void) detailPressedWithRank:(NSUInteger)rank
-{
-    NSManagedObjectID* albumMoid = [self.albumMoids objectAtIndex:rank - 1];
-    MGMAlbum* album = [self.core.coreDataAccess mainThreadVersion:albumMoid];
-    [self.albumSelectionDelegate detailSelected:album sender:self];
-}
-
-#pragma mark -
-#pragma mark MGMAlbumScoresViewDelegate
+#pragma mark - MGMAlbumScoresViewDelegate
 
 - (void) selectionChanged:(MGMAlbumScoresViewSelection)selection
 {

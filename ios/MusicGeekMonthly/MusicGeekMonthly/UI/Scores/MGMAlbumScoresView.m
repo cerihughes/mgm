@@ -7,11 +7,12 @@
 //
 
 #import "MGMAlbumScoresView.h"
+#import "MGMAlbumScoresCollectionViewLayout.h"
 
 @interface MGMAlbumScoresView ()
 
-@property (readonly) UINavigationBar* navigationBar;
 @property (readonly) UISegmentedControl* segmentedControl;
+@property (readonly) MGMAlbumScoresCollectionViewLayout *collectionViewLayout;
 
 @end
 
@@ -23,19 +24,19 @@
 
     self.backgroundColor = [UIColor whiteColor];
 
-    _navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectZero];
-    UINavigationItem* navigationItem = [[UINavigationItem alloc] initWithTitle:@""];
+    _collectionViewLayout = [[MGMAlbumScoresCollectionViewLayout alloc] init];
+    _collectionViewLayout.itemSize = CGSizeMake(200, 200);
+    _collectionViewLayout.itemSpace = 20;
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_collectionViewLayout];
+    _collectionView.decelerationRate = UIScrollViewDecelerationRateFast;
+    _collectionView.backgroundColor = [UIColor clearColor];
+    _collectionView.showsHorizontalScrollIndicator = NO;
+    _collectionView.showsVerticalScrollIndicator = NO;
+    [self addSubview:_collectionView];
 
     _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Classic Albums", @"New Albums", @"All Albums"]];
     [_segmentedControl addTarget:self action:@selector(controlChanged:) forControlEvents:UIControlEventValueChanged];
-
-    navigationItem.titleView = _segmentedControl;
-    [_navigationBar pushNavigationItem:navigationItem animated:YES];
-
-    _albumGridView = [[MGMAlbumGridView alloc] initWithFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y + 64, self.frame.size.width, self.frame.size.height - (64 + self.tabBarHeight))];
-
-    [self addSubview:_albumGridView];
-    [self addSubview:_navigationBar];
+    [self addSubview:_segmentedControl];
 }
 
 - (void) controlChanged:(UISegmentedControl*)sender
@@ -51,18 +52,12 @@
     [self controlChanged:self.segmentedControl];
 }
 
-- (void) layoutSubviewsIphone
+- (void)layoutSubviewsIphone
 {
     [super layoutSubviewsIphone];
 
-    self.navigationBar.frame = CGRectMake(0, 20, 320, 44);
-}
-
-- (void) layoutSubviewsIpad
-{
-    [super layoutSubviewsIpad];
-
-    self.navigationBar.frame = CGRectMake(0, 20, 768, 44);
+    self.collectionView.frame = CGRectMake(0, 200, self.frame.size.width, 200);
+    [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
 @end

@@ -8,8 +8,6 @@
 
 #import "MGMTabbedView.h"
 
-#import "MGMAlbumGridView.h"
-
 typedef NS_ENUM(NSUInteger, MGMAlbumScoresViewSelection)
 {
     MGMAlbumScoresViewSelectionClassicAlbums,
@@ -27,7 +25,7 @@ typedef NS_ENUM(NSUInteger, MGMAlbumScoresViewSelection)
 
 @property (weak) id<MGMAlbumScoresViewDelegate> delegate;
 
-@property (readonly) MGMAlbumGridView* albumGridView;
+@property (readonly) UICollectionView *collectionView;
 
 - (void) setSelection:(MGMAlbumScoresViewSelection)selection;
 

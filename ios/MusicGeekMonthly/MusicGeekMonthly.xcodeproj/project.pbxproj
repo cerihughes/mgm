@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		65052CAD18D36E2100390A91 /* MGMBackgroundAlbumArtCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 65052CAC18D36E2000390A91 /* MGMBackgroundAlbumArtCollection.m */; };
+		65184F3B1AED1A910060FC94 /* MGMAlbumScoresCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 65184F3A1AED1A910060FC94 /* MGMAlbumScoresCollectionViewLayout.m */; };
+		65184F3E1AED3CF00060FC94 /* MGMAlbumScoresCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65184F3D1AED3CF00060FC94 /* MGMAlbumScoresCollectionViewCell.m */; };
 		651B72D418D47BA200346F72 /* MGMDaoOperationTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 651B72D318D47BA200346F72 /* MGMDaoOperationTestCase.m */; };
 		651B72D718D47C1300346F72 /* MGMCoreDataAccessTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 651B72D618D47C1300346F72 /* MGMCoreDataAccessTestCase.m */; };
 		651B72D918D480B900346F72 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 651B72D818D480B900346F72 /* libOCMock.a */; };
@@ -171,6 +173,10 @@
 		65052CAB18D36E2000390A91 /* MGMBackgroundAlbumArtCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGMBackgroundAlbumArtCollection.h; sourceTree = "<group>"; };
 		65052CAC18D36E2000390A91 /* MGMBackgroundAlbumArtCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGMBackgroundAlbumArtCollection.m; sourceTree = "<group>"; };
 		651832571AE2C207004FCCA2 /* MGMSecrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGMSecrets.h; sourceTree = "<group>"; };
+		65184F391AED1A910060FC94 /* MGMAlbumScoresCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGMAlbumScoresCollectionViewLayout.h; sourceTree = "<group>"; };
+		65184F3A1AED1A910060FC94 /* MGMAlbumScoresCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGMAlbumScoresCollectionViewLayout.m; sourceTree = "<group>"; };
+		65184F3C1AED3CF00060FC94 /* MGMAlbumScoresCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGMAlbumScoresCollectionViewCell.h; sourceTree = "<group>"; };
+		65184F3D1AED3CF00060FC94 /* MGMAlbumScoresCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGMAlbumScoresCollectionViewCell.m; sourceTree = "<group>"; };
 		651B72D318D47BA200346F72 /* MGMDaoOperationTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGMDaoOperationTestCase.m; sourceTree = "<group>"; };
 		651B72D518D47C1300346F72 /* MGMCoreDataAccessTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGMCoreDataAccessTestCase.h; sourceTree = "<group>"; };
 		651B72D618D47C1300346F72 /* MGMCoreDataAccessTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGMCoreDataAccessTestCase.m; sourceTree = "<group>"; };
@@ -572,6 +578,10 @@
 			children = (
 				658D327218B1147C007A4D98 /* MGMAlbumScoresView.h */,
 				658D327318B1147C007A4D98 /* MGMAlbumScoresView.m */,
+				65184F391AED1A910060FC94 /* MGMAlbumScoresCollectionViewLayout.h */,
+				65184F3A1AED1A910060FC94 /* MGMAlbumScoresCollectionViewLayout.m */,
+				65184F3C1AED3CF00060FC94 /* MGMAlbumScoresCollectionViewCell.h */,
+				65184F3D1AED3CF00060FC94 /* MGMAlbumScoresCollectionViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1270,6 +1280,7 @@
 				658D329418B1147C007A4D98 /* MGMEventTableViewDataSource.m in Sources */,
 				658D315418B112E3007A4D98 /* MGMRemoteDataSource.m in Sources */,
 				65FD1D6418C0C1CA00993D02 /* MGMImagedEntity.m in Sources */,
+				65184F3B1AED1A910060FC94 /* MGMAlbumScoresCollectionViewLayout.m in Sources */,
 				658D327F18B1147C007A4D98 /* MGMAlbumDetailView.m in Sources */,
 				658D314C18B112E3007A4D98 /* MGMDao.m in Sources */,
 				658D329718B1147C007A4D98 /* MGMHomeView.m in Sources */,
@@ -1282,6 +1293,7 @@
 				658D329118B1147C007A4D98 /* MGMEventsView.m in Sources */,
 				658D32A418B1147C007A4D98 /* MGMAlbumScoresView.m in Sources */,
 				658D328918B1147C007A4D98 /* MGMTabbedViewController.m in Sources */,
+				65184F3E1AED3CF00060FC94 /* MGMAlbumScoresCollectionViewCell.m in Sources */,
 				6542306418CBAFD100121B3B /* MGMPreloadTimePeriodsDaoOperation.m in Sources */,
 				658D318618B112E3007A4D98 /* MGMAlbumRenderService.m in Sources */,
 				F453203018D08AC80052D462 /* MGMCoreDataTableViewDataSourceContainer.m in Sources */,
