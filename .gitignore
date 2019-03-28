@@ -21,3 +21,5 @@ tasks.xml
 Secrets.java
 android/app/src/main/res/values/secrets.xml
 android/app/google-services.json
+android/wear/src/release/res/values/google_maps_api.xml
+android/wear/src/debug/res/values/google_maps_api.xml

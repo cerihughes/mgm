@@ -11,6 +11,8 @@ import uk.co.cerihughes.mgm.android.R
 import uk.co.cerihughes.mgm.android.ui.inflate
 import uk.co.cerihughes.mgm.android.ui.isSpotifyInstalled
 import uk.co.cerihughes.mgm.android.ui.launchSpotify
+import uk.co.cerihughes.mgm.common.viewmodel.AlbumScoreViewModel
+import uk.co.cerihughes.mgm.common.viewmodel.AlbumScoresViewModel
 
 class AlbumScoresAdapter (private val viewModel: AlbumScoresViewModel) : RecyclerView.Adapter<AlbumScoresAdapter.AlbumScoresItemViewHolder>() {
 
