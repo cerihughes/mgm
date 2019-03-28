@@ -5,6 +5,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Before
 import org.junit.Test
+import uk.co.cerihughes.mgm.common.model.Event
 import uk.co.cerihughes.mgm.common.repository.local.LocalDataSourceImpl
 
 class LocalDataSourceImplTest {
@@ -20,7 +21,7 @@ class LocalDataSourceImplTest {
     @Test
     fun testDataLoader() {
         val localData = localDataSource.getLocalData()!!
-        val events = uk.co.cerihughes.mgm.common.repository.GsonFactory.createGson().fromJson(localData , Array<uk.co.cerihughes.mgm.common.model.Event>::class.java).toList()
+        val events = uk.co.cerihughes.mgm.common.repository.GsonFactory.createGson().fromJson(localData , Array<Event>::class.java).toList()
         assertEquals(60, events.size)
 
         var event = events.first()

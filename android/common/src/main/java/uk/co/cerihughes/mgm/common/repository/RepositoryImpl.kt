@@ -1,5 +1,6 @@
 package uk.co.cerihughes.mgm.common.repository
 
+import uk.co.cerihughes.mgm.common.model.Event
 import uk.co.cerihughes.mgm.common.repository.local.LocalDataSource
 import uk.co.cerihughes.mgm.common.repository.remote.RemoteDataSource
 
@@ -8,7 +9,7 @@ class RepositoryImpl(private val remoteDataSource: RemoteDataSource, private val
 
     private val gson = GsonFactory.createGson()
 
-    private var cachedEvents: List<uk.co.cerihughes.mgm.common.model.Event>? = null
+    private var cachedEvents: List<Event>? = null
 
     override fun getEvents(callback: Repository.GetEventsCallback) {
         cachedEvents?.let {
@@ -20,14 +21,14 @@ class RepositoryImpl(private val remoteDataSource: RemoteDataSource, private val
         remoteDataSource.getRemoteData(object: RemoteDataSource.GetRemoteDataCallback {
             override fun onDataLoaded(data: String) {
                 localDataSource.persistRemoteData(data)
-                val events = gson.fromJson(data , Array<uk.co.cerihughes.mgm.common.model.Event>::class.java).toList()
+                val events = gson.fromJson(data , Array<Event>::class.java).toList()
                 cachedEvents = events
                 callback.onEventsLoaded(events)
             }
 
             override fun onDataNotAvailable() {
                 val localData = localDataSource.getLocalData()
-                val events = gson.fromJson(localData , Array<uk.co.cerihughes.mgm.common.model.Event>::class.java).toList()
+                val events = gson.fromJson(localData , Array<Event>::class.java).toList()
                 callback.onEventsLoaded(events)
             }
         })

@@ -1,19 +1,22 @@
 package uk.co.cerihughes.mgm.common.viewmodel
 
+import uk.co.cerihughes.mgm.common.model.Album
+import uk.co.cerihughes.mgm.common.model.Event
+
 class AlbumScoresViewModel(repository: uk.co.cerihughes.mgm.common.repository.Repository) : RemoteDataLoadingViewModel(repository) {
 
     private val comparator = compareByDescending<uk.co.cerihughes.mgm.common.model.Album> { it.score }
         .thenBy { it.name.toLowerCase() }
         .thenBy { it.artist.toLowerCase() }
 
-    private var classicAlbums: List<uk.co.cerihughes.mgm.common.model.Album> = emptyList()
-    private var newAlbums: List<uk.co.cerihughes.mgm.common.model.Album> = emptyList()
-    private var allAlbums: List<uk.co.cerihughes.mgm.common.model.Album> = emptyList()
+    private var classicAlbums: List<Album> = emptyList()
+    private var newAlbums: List<Album> = emptyList()
+    private var allAlbums: List<Album> = emptyList()
     private var scoreViewModels: List<AlbumScoreViewModel> = emptyList()
 
     fun isLoaded(): Boolean = allAlbums.size > 0
 
-    override fun setEvents(events: List<uk.co.cerihughes.mgm.common.model.Event>) {
+    override fun setEvents(events: List<Event>) {
         classicAlbums = events.mapNotNull { it.classicAlbum }
             .filter { it.score != null }
             .sortedWith(comparator)
@@ -40,7 +43,7 @@ class AlbumScoresViewModel(repository: uk.co.cerihughes.mgm.common.repository.Re
         }
     }
 
-    private fun calculatePositions(albums: List<uk.co.cerihughes.mgm.common.model.Album>): List<String> {
+    private fun calculatePositions(albums: List<Album>): List<String> {
         val scores = albums.map { it.score ?: 0.0f }
         var positions: MutableList<String> = mutableListOf()
         var currentPosition = 0

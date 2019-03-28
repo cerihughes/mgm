@@ -1,8 +1,10 @@
 package uk.co.cerihughes.mgm.common.viewmodel
 
+import uk.co.cerihughes.mgm.common.model.Event
+import uk.co.cerihughes.mgm.common.repository.Repository
 import java.text.DateFormat
 
-class LatestEventViewModel(repository: uk.co.cerihughes.mgm.common.repository.Repository): uk.co.cerihughes.mgm.common.viewmodel.RemoteDataLoadingViewModel(repository) {
+class LatestEventViewModel(repository: Repository): RemoteDataLoadingViewModel(repository) {
 
     companion object {
         private val dateFormatter = DateFormat.getDateInstance(DateFormat.LONG)
@@ -13,27 +15,27 @@ class LatestEventViewModel(repository: uk.co.cerihughes.mgm.common.repository.Re
         ENTITY(1)
     }
 
-    private var event: uk.co.cerihughes.mgm.common.model.Event? = null
-    private var eventEntityViewModels: List<uk.co.cerihughes.mgm.common.viewmodel.LatestEventEntityViewModel> = emptyList()
+    private var event: Event? = null
+    private var eventEntityViewModels: List<LatestEventEntityViewModel> = emptyList()
 
     fun isLoaded(): Boolean = event != null
 
-    override fun setEvents(events: List<uk.co.cerihughes.mgm.common.model.Event>) {
+    override fun setEvents(events: List<Event>) {
         // Remove events without albums, then apply descending sort by ID
         val sortedEvents = events.filter { it.classicAlbum != null && it.newAlbum != null }.sortedByDescending { it.number }
 
         if (sortedEvents.size > 0) {
-            var entityViewModels: MutableList<uk.co.cerihughes.mgm.common.viewmodel.LatestEventEntityViewModel> = mutableListOf()
+            var entityViewModels: MutableList<LatestEventEntityViewModel> = mutableListOf()
             var event = sortedEvents.first()
 
             event.classicAlbum?.let {
-                entityViewModels.add(uk.co.cerihughes.mgm.common.viewmodel.LatestEventEntityViewModel.createEntityViewModel(it))
+                entityViewModels.add(LatestEventEntityViewModel.createEntityViewModel(it))
             }
             event.newAlbum?.let {
-                entityViewModels.add(uk.co.cerihughes.mgm.common.viewmodel.LatestEventEntityViewModel.createEntityViewModel(it))
+                entityViewModels.add(LatestEventEntityViewModel.createEntityViewModel(it))
             }
             event.playlist?.let {
-                entityViewModels.add(uk.co.cerihughes.mgm.common.viewmodel.LatestEventEntityViewModel.createEntityViewModel(it))
+                entityViewModels.add(LatestEventEntityViewModel.createEntityViewModel(it))
             }
 
             this.event = event
@@ -60,10 +62,10 @@ class LatestEventViewModel(repository: uk.co.cerihughes.mgm.common.repository.Re
         return Pair(location.latitude, location.longitude)
     }
 
-    fun itemType(position: Int): ItemType {
+    fun itemType(position: Int): LatestEventViewModel.ItemType {
         return when (position) {
-            0 -> if (isLocationAvailable()) ItemType.LOCATION else ItemType.ENTITY
-            else -> ItemType.ENTITY
+            0 -> if (isLocationAvailable()) LatestEventViewModel.ItemType.LOCATION else LatestEventViewModel.ItemType.ENTITY
+            else -> LatestEventViewModel.ItemType.ENTITY
         }
     }
 
@@ -91,7 +93,7 @@ class LatestEventViewModel(repository: uk.co.cerihughes.mgm.common.repository.Re
         }
     }
 
-    fun eventEntityViewModel(index: Int): uk.co.cerihughes.mgm.common.viewmodel.LatestEventEntityViewModel? {
+    fun eventEntityViewModel(index: Int): LatestEventEntityViewModel? {
         val entityIndex = if(isLocationAvailable()) index - 1 else index
         try {
             return eventEntityViewModels[entityIndex]

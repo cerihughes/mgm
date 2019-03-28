@@ -1,9 +1,8 @@
 package uk.co.cerihughes.mgm.common
 
-import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Test
+import uk.co.cerihughes.mgm.common.model.AlbumType
 import uk.co.cerihughes.mgm.common.viewmodel.AlbumScoresViewModel
 
 class AlbumScoresViewModelTests {
@@ -68,17 +67,17 @@ class AlbumScoresViewModelTests {
 
     @Test
     fun testAlbums_allSorts() {
-        val classicAlbum1 = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.CLASSIC, "zzz", "aaa", 8.0f)
-        val classicAlbum2 = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.CLASSIC, "B2", "yyy", 9.0f)
-        val classicAlbum3 = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.CLASSIC, "A0", "ZZZ", 10.0f)
-        val classicAlbum4 = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.CLASSIC, "B2", "xxx", 9.0f)
-        val classicAlbum5 = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.CLASSIC, "A1", "Z1", 10.0f)
+        val classicAlbum1 = createAlbum(AlbumType.CLASSIC, "zzz", "aaa", 8.0f)
+        val classicAlbum2 = createAlbum(AlbumType.CLASSIC, "B2", "yyy", 9.0f)
+        val classicAlbum3 = createAlbum(AlbumType.CLASSIC, "A0", "ZZZ", 10.0f)
+        val classicAlbum4 = createAlbum(AlbumType.CLASSIC, "B2", "xxx", 9.0f)
+        val classicAlbum5 = createAlbum(AlbumType.CLASSIC, "A1", "Z1", 10.0f)
 
-        val newAlbum1 = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.NEW, "2", "Art", 7.0f)
-        val newAlbum2 = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.NEW, "aaa", "zzz", 8.0f)
-        val newAlbum3 = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.NEW, "1", "Art", 7.0f)
-        val newAlbum4 = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.NEW, "B2", "zzz", 9.0f)
-        val newAlbum5 = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.NEW, "A1", "A2", 10.0f)
+        val newAlbum1 = createAlbum(AlbumType.NEW, "2", "Art", 7.0f)
+        val newAlbum2 = createAlbum(AlbumType.NEW, "aaa", "zzz", 8.0f)
+        val newAlbum3 = createAlbum(AlbumType.NEW, "1", "Art", 7.0f)
+        val newAlbum4 = createAlbum(AlbumType.NEW, "B2", "zzz", 9.0f)
+        val newAlbum5 = createAlbum(AlbumType.NEW, "A1", "A2", 10.0f)
 
         val event1 = createEvent(1, classicAlbum1, newAlbum1)
         val event2 = createEvent(2, classicAlbum2, newAlbum2)
@@ -95,20 +94,20 @@ class AlbumScoresViewModelTests {
     }
 
     private fun createEvent(number: Int, classicAlbumScore: Float, newAlbumScore: Float): uk.co.cerihughes.mgm.common.model.Event {
-        val classicAlbum = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.CLASSIC, score = classicAlbumScore)
-        val newAlbum = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.NEW, score = newAlbumScore)
+        val classicAlbum = createAlbum(AlbumType.CLASSIC, score = classicAlbumScore)
+        val newAlbum = createAlbum(AlbumType.NEW, score = newAlbumScore)
         return createEvent(number, classicAlbum, newAlbum)
     }
 
     private fun createEventByAlbumName(number: Int, classicAlbumName: String, newAlbumName: String): uk.co.cerihughes.mgm.common.model.Event {
-        val classicAlbum = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.CLASSIC, name = classicAlbumName)
-        val newAlbum = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.NEW, name = newAlbumName)
+        val classicAlbum = createAlbum(AlbumType.CLASSIC, name = classicAlbumName)
+        val newAlbum = createAlbum(AlbumType.NEW, name = newAlbumName)
         return createEvent(number, classicAlbum, newAlbum)
     }
 
     private fun createEventByAlbumArtist(number: Int, classicAlbumArtist: String, newAlbumArtist: String): uk.co.cerihughes.mgm.common.model.Event {
-        val classicAlbum = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.CLASSIC, artist = classicAlbumArtist)
-        val newAlbum = createAlbum(uk.co.cerihughes.mgm.common.model.AlbumType.NEW, artist = newAlbumArtist)
+        val classicAlbum = createAlbum(AlbumType.CLASSIC, artist = classicAlbumArtist)
+        val newAlbum = createAlbum(AlbumType.NEW, artist = newAlbumArtist)
         return createEvent(number, classicAlbum, newAlbum)
     }
 

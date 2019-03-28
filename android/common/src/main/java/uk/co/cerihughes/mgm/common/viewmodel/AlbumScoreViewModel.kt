@@ -65,6 +65,6 @@ class AlbumScoreViewModel(private val album: Album, private val index: Int, priv
 
     fun spotifyURL(): String? {
         val albumId = album.spotifyId ?: return null
-        return uk.co.cerihughes.mgm.common.viewmodel.SpotifyURLGenerator.createSpotifyAlbumURL(albumId)
+        return SpotifyURLGenerator.createSpotifyAlbumURL(albumId)
     }
 }

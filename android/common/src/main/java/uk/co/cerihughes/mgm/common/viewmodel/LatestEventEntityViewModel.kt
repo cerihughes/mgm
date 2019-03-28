@@ -1,12 +1,17 @@
 package uk.co.cerihughes.mgm.common.viewmodel
 
-class LatestEventEntityViewModel(images: List<uk.co.cerihughes.mgm.common.model.Image>, val entityType: String, val entityName: String, val entityOwner: String, val spotifyURL: String?) : AlbumArtViewModel(images) {
+import uk.co.cerihughes.mgm.common.model.Album
+import uk.co.cerihughes.mgm.common.model.AlbumType
+import uk.co.cerihughes.mgm.common.model.Image
+import uk.co.cerihughes.mgm.common.model.Playlist
+
+class LatestEventEntityViewModel(images: List<Image>, val entityType: String, val entityName: String, val entityOwner: String, val spotifyURL: String?) : AlbumArtViewModel(images) {
 
     companion object {
-        fun createEntityViewModel(album: uk.co.cerihughes.mgm.common.model.Album): LatestEventEntityViewModel {
+        fun createEntityViewModel(album: Album): LatestEventEntityViewModel {
             val entityType = when (album.type) {
-                uk.co.cerihughes.mgm.common.model.AlbumType.CLASSIC -> "CLASSIC ALBUM"
-                uk.co.cerihughes.mgm.common.model.AlbumType.NEW -> "NEW ALBUM"
+                AlbumType.CLASSIC -> "CLASSIC ALBUM"
+                AlbumType.NEW -> "NEW ALBUM"
                 else -> "ALBUM"
             }
 
@@ -23,7 +28,7 @@ class LatestEventEntityViewModel(images: List<uk.co.cerihughes.mgm.common.model.
             )
         }
 
-        fun createEntityViewModel(playlist: uk.co.cerihughes.mgm.common.model.Playlist): LatestEventEntityViewModel {
+        fun createEntityViewModel(playlist: Playlist): LatestEventEntityViewModel {
             val spotifyURL = playlist.spotifyId?.let {
                 SpotifyURLGenerator.createSpotifyPlaylistURL(it)
             }
