@@ -10,7 +10,8 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_album_scores.view.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 import uk.co.cerihughes.mgm.android.R
-import uk.co.cerihughes.mgm.android.ui.RemoteDataLoadingViewModel
+import uk.co.cerihughes.mgm.common.viewmodel.LatestEventViewModel
+import uk.co.cerihughes.mgm.common.viewmodel.RemoteDataLoadingViewModel
 
 class LatestEventFragment : Fragment() {
 

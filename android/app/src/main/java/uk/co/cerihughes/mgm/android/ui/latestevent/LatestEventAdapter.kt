@@ -16,6 +16,8 @@ import uk.co.cerihughes.mgm.android.ui.BlurTransformation
 import uk.co.cerihughes.mgm.android.ui.inflate
 import uk.co.cerihughes.mgm.android.ui.isSpotifyInstalled
 import uk.co.cerihughes.mgm.android.ui.launchSpotify
+import uk.co.cerihughes.mgm.common.viewmodel.LatestEventEntityViewModel
+import uk.co.cerihughes.mgm.common.viewmodel.LatestEventViewModel
 
 class LatestEventAdapter (private val viewModel: LatestEventViewModel) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
