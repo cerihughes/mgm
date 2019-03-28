@@ -2,10 +2,11 @@ package uk.co.cerihughes.mgm.common.viewmodel
 
 import uk.co.cerihughes.mgm.common.model.Album
 import uk.co.cerihughes.mgm.common.model.Event
+import uk.co.cerihughes.mgm.common.repository.Repository
 
-class AlbumScoresViewModel(repository: uk.co.cerihughes.mgm.common.repository.Repository) : RemoteDataLoadingViewModel(repository) {
+class AlbumScoresViewModel(repository: Repository) : RemoteDataLoadingViewModel(repository) {
 
-    private val comparator = compareByDescending<uk.co.cerihughes.mgm.common.model.Album> { it.score }
+    private val comparator = compareByDescending<Album> { it.score }
         .thenBy { it.name.toLowerCase() }
         .thenBy { it.artist.toLowerCase() }
 

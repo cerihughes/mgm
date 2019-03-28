@@ -19,13 +19,7 @@ class LatestEventEntityViewModel(images: List<Image>, val entityType: String, va
                 SpotifyURLGenerator.createSpotifyAlbumURL(it)
             }
 
-            return LatestEventEntityViewModel(
-                album.images,
-                entityType,
-                album.name,
-                album.artist,
-                spotifyURL
-            )
+            return LatestEventEntityViewModel(album.images, entityType, album.name, album.artist, spotifyURL)
         }
 
         fun createEntityViewModel(playlist: Playlist): LatestEventEntityViewModel {
@@ -33,13 +27,7 @@ class LatestEventEntityViewModel(images: List<Image>, val entityType: String, va
                 SpotifyURLGenerator.createSpotifyPlaylistURL(it)
             }
 
-            return LatestEventEntityViewModel(
-                playlist.images,
-                "PLAYLIST",
-                playlist.name,
-                playlist.owner,
-                spotifyURL
-            )
+            return LatestEventEntityViewModel(playlist.images, "PLAYLIST", playlist.name, playlist.owner, spotifyURL)
         }
     }
 }

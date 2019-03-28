@@ -2,7 +2,9 @@ package uk.co.cerihughes.mgm.common
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import uk.co.cerihughes.mgm.common.model.Album
 import uk.co.cerihughes.mgm.common.model.AlbumType
+import uk.co.cerihughes.mgm.common.model.Event
 import uk.co.cerihughes.mgm.common.viewmodel.AlbumScoresViewModel
 
 class AlbumScoresViewModelTests {
@@ -93,30 +95,30 @@ class AlbumScoresViewModelTests {
             artistNames = listOf("ZZZ", "A2", "Z1", "xxx", "yyy", "zzz", "zzz", "aaa", "Art", "Art"))
     }
 
-    private fun createEvent(number: Int, classicAlbumScore: Float, newAlbumScore: Float): uk.co.cerihughes.mgm.common.model.Event {
+    private fun createEvent(number: Int, classicAlbumScore: Float, newAlbumScore: Float): Event {
         val classicAlbum = createAlbum(AlbumType.CLASSIC, score = classicAlbumScore)
         val newAlbum = createAlbum(AlbumType.NEW, score = newAlbumScore)
         return createEvent(number, classicAlbum, newAlbum)
     }
 
-    private fun createEventByAlbumName(number: Int, classicAlbumName: String, newAlbumName: String): uk.co.cerihughes.mgm.common.model.Event {
+    private fun createEventByAlbumName(number: Int, classicAlbumName: String, newAlbumName: String): Event {
         val classicAlbum = createAlbum(AlbumType.CLASSIC, name = classicAlbumName)
         val newAlbum = createAlbum(AlbumType.NEW, name = newAlbumName)
         return createEvent(number, classicAlbum, newAlbum)
     }
 
-    private fun createEventByAlbumArtist(number: Int, classicAlbumArtist: String, newAlbumArtist: String): uk.co.cerihughes.mgm.common.model.Event {
+    private fun createEventByAlbumArtist(number: Int, classicAlbumArtist: String, newAlbumArtist: String): Event {
         val classicAlbum = createAlbum(AlbumType.CLASSIC, artist = classicAlbumArtist)
         val newAlbum = createAlbum(AlbumType.NEW, artist = newAlbumArtist)
         return createEvent(number, classicAlbum, newAlbum)
     }
 
-    private fun createEvent(number: Int, classicAlbum: uk.co.cerihughes.mgm.common.model.Album, newAlbum: uk.co.cerihughes.mgm.common.model.Album): uk.co.cerihughes.mgm.common.model.Event {
-        return uk.co.cerihughes.mgm.common.model.Event(number, null, null, null, classicAlbum, newAlbum)
+    private fun createEvent(number: Int, classicAlbum: Album, newAlbum: Album): Event {
+        return Event(number, null, null, null, classicAlbum, newAlbum)
     }
 
-    private fun createAlbum(type: uk.co.cerihughes.mgm.common.model.AlbumType, name: String = "name", artist: String = "artist", score: Float = 5.0f): uk.co.cerihughes.mgm.common.model.Album {
-        return uk.co.cerihughes.mgm.common.model.Album(type, null, name, artist, score, emptyList())
+    private fun createAlbum(type: AlbumType, name: String = "name", artist: String = "artist", score: Float = 5.0f): Album {
+        return Album(type, null, name, artist, score, emptyList())
     }
 
     private fun assert(positions: List<String>,

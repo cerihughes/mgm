@@ -4,8 +4,7 @@ import uk.co.cerihughes.mgm.common.model.Event
 import uk.co.cerihughes.mgm.common.repository.local.LocalDataSource
 import uk.co.cerihughes.mgm.common.repository.remote.RemoteDataSource
 
-class RepositoryImpl(private val remoteDataSource: RemoteDataSource, private val localDataSource: LocalDataSource):
-    Repository {
+class RepositoryImpl(private val remoteDataSource: RemoteDataSource, private val localDataSource: LocalDataSource): Repository {
 
     private val gson = GsonFactory.createGson()
 
