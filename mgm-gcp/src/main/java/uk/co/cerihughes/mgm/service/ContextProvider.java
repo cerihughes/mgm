@@ -1,6 +1,7 @@
 package uk.co.cerihughes.mgm.service;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -27,6 +28,7 @@ public class ContextProvider implements ContextResolver<ObjectMapper> {
         objectMapper = new ObjectMapper()
                 .registerModule(javaTimeModule)
                 .enable(SerializationFeature.INDENT_OUTPUT)
+                .setSerializationInclusion( JsonInclude.Include.NON_NULL )
                 .setDateFormat(new SimpleDateFormat(DateTimeFormatterFactory.dateFormat))
                 .setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
     }

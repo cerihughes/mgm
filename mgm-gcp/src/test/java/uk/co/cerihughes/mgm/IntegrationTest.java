@@ -56,6 +56,9 @@ public class IntegrationTest {
         assertNotNull(expiresHeader);
         assertEquals("application/json", contentTypeHeader);
         assertTrue(events.contains("17/02/2011"));
+        assertTrue(events.contains("\"new\""));
+        assertTrue(events.contains("\"classic\""));
+        assertFalse(events.contains("null"));
     }
 }
 
