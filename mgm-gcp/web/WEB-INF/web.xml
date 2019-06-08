@@ -3,12 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
-    <servlet>
-        <servlet-name>MGMServlet</servlet-name>
-        <servlet-class>uk.co.cerihughes.mgm.servlet.MGMServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MGMServlet</servlet-name>
-        <url-pattern>/mgm.json</url-pattern>
-    </servlet-mapping>
+
+    <display-name>Music Geek Monthly</display-name>
 </web-app>

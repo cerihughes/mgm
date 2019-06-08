@@ -1,13 +1,13 @@
 package uk.co.cerihughes.mgm.model.output;
 
-import com.google.gson.annotations.SerializedName;
+import javax.xml.bind.annotation.XmlAttribute;
 
 public class OutputLocation {
-    @SerializedName("name")
+    @XmlAttribute(name = "name")
     private String name;
-    @SerializedName("latitude")
+    @XmlAttribute(name = "latitude")
     private double latitude;
-    @SerializedName("longitude")
+    @XmlAttribute(name = "longitude")
     private double longitude;
 
     private OutputLocation(double latitude, double longitude) {

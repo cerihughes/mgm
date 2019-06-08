@@ -1,21 +1,20 @@
 package uk.co.cerihughes.mgm.model.output;
 
-import com.google.gson.annotations.SerializedName;
-
+import javax.xml.bind.annotation.XmlAttribute;
 import java.time.LocalDate;
 
 public final class OutputEvent {
-    @SerializedName("number")
+    @XmlAttribute(name = "number")
     private int number;
-    @SerializedName("date")
+    @XmlAttribute(name = "date")
     private LocalDate date;
-    @SerializedName("location")
+    @XmlAttribute(name = "location")
     private OutputLocation location;
-    @SerializedName("classicAlbum")
+    @XmlAttribute(name = "classicAlbum")
     private OutputAlbum classicAlbum;
-    @SerializedName("newAlbum")
+    @XmlAttribute(name = "newAlbum")
     private OutputAlbum newAlbum;
-    @SerializedName("playlist")
+    @XmlAttribute(name = "playlist")
     private OutputPlaylist playlist;
 
     private OutputEvent(int number) {

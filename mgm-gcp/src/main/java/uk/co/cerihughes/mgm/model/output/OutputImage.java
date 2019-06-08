@@ -1,11 +1,11 @@
 package uk.co.cerihughes.mgm.model.output;
 
-import com.google.gson.annotations.SerializedName;
+import javax.xml.bind.annotation.XmlAttribute;
 
 public final class OutputImage {
-    @SerializedName("size")
+    @XmlAttribute(name = "size")
     private int size;
-    @SerializedName("url")
+    @XmlAttribute(name = "url")
     private String url;
 
     private OutputImage(int size) {

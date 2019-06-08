@@ -1,17 +1,16 @@
 package uk.co.cerihughes.mgm.model.output;
 
-import com.google.gson.annotations.SerializedName;
-
+import javax.xml.bind.annotation.XmlAttribute;
 import java.util.List;
 
 public final class OutputPlaylist {
-    @SerializedName("spotifyId")
+    @XmlAttribute(name = "spotifyId")
     private String spotifyId;
-    @SerializedName("name")
+    @XmlAttribute(name = "name")
     private String name;
-    @SerializedName("owner")
+    @XmlAttribute(name = "owner")
     private String owner;
-    @SerializedName("images")
+    @XmlAttribute(name = "images")
     private List<OutputImage> images;
 
     private OutputPlaylist() {
