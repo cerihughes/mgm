@@ -56,22 +56,5 @@ public class IntegrationTest {
         assertTrue(events.contains("\"classic\""));
         assertFalse(events.contains("null"));
     }
-
-    @Test
-    public void swaggerTest() {
-        ResteasyClient client = new ResteasyClientBuilderImpl().build();
-        Response response = client.target("http://localhost:" + port + "/swagger.json").request().get();
-        MultivaluedMap<String, String> stringHeaders = response.getStringHeaders();
-        String contentTypeHeader = stringHeaders.getFirst("Content-Type");
-        String swagger = response.readEntity(String.class);
-
-        assertEquals("application/json", contentTypeHeader);
-        assertTrue(swagger.contains("AlbumApiModel"));
-        assertTrue(swagger.contains("EventApiModel"));
-        assertTrue(swagger.contains("ImageApiModel"));
-        assertTrue(swagger.contains("LocationApiModel"));
-        assertTrue(swagger.contains("PlaylistApiModel"));
-        assertTrue(swagger.contains("AlbumTypeApiModel"));
-    }
 }
 
