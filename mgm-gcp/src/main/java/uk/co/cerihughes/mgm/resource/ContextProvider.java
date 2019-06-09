@@ -1,4 +1,4 @@
-package uk.co.cerihughes.mgm.service;
+package uk.co.cerihughes.mgm.resource;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;

@@ -1,5 +1,8 @@
 package uk.co.cerihughes.mgm.model.output;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel("ImageApiModel")
 public final class OutputImage {
     private int size;
     private String url;

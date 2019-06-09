@@ -7,13 +7,10 @@ import org.jboss.resteasy.test.TestPortProvider;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uk.co.cerihughes.mgm.service.ContextProvider;
-import uk.co.cerihughes.mgm.service.EventsService;
 
 import javax.ws.rs.core.EntityTag;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
-import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,8 +24,7 @@ public class IntegrationTest {
         port = TestPortProvider.getPort();
         netty = new NettyJaxrsServer();
 
-        netty.getDeployment().setActualProviderClasses(Collections.singletonList(ContextProvider.class));
-        netty.getDeployment().setActualResourceClasses(Collections.singletonList(EventsService.class));
+        netty.getDeployment().setApplication(new MGMApplication());
         netty.setPort(port);
         netty.setRootResourcePath("");
         netty.setSecurityDomain(null);
@@ -59,6 +55,23 @@ public class IntegrationTest {
         assertTrue(events.contains("\"new\""));
         assertTrue(events.contains("\"classic\""));
         assertFalse(events.contains("null"));
+    }
+
+    @Test
+    public void swaggerTest() {
+        ResteasyClient client = new ResteasyClientBuilderImpl().build();
+        Response response = client.target("http://localhost:" + port + "/swagger.json").request().get();
+        MultivaluedMap<String, String> stringHeaders = response.getStringHeaders();
+        String contentTypeHeader = stringHeaders.getFirst("Content-Type");
+        String swagger = response.readEntity(String.class);
+
+        assertEquals("application/json", contentTypeHeader);
+        assertTrue(swagger.contains("AlbumApiModel"));
+        assertTrue(swagger.contains("EventApiModel"));
+        assertTrue(swagger.contains("ImageApiModel"));
+        assertTrue(swagger.contains("LocationApiModel"));
+        assertTrue(swagger.contains("PlaylistApiModel"));
+        assertTrue(swagger.contains("AlbumTypeApiModel"));
     }
 }
 

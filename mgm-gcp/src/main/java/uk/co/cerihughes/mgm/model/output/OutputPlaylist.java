@@ -1,7 +1,10 @@
 package uk.co.cerihughes.mgm.model.output;
 
+import io.swagger.annotations.ApiModel;
+
 import java.util.List;
 
+@ApiModel("PlaylistApiModel")
 public final class OutputPlaylist {
     private String spotifyId;
     private String name;

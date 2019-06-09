@@ -1,5 +1,7 @@
-package uk.co.cerihughes.mgm.service;
+package uk.co.cerihughes.mgm.resource;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import uk.co.cerihughes.mgm.data.input.GoogleSheetsDataConverterImpl;
 import uk.co.cerihughes.mgm.data.input.GoogleSheetsDataLoaderImpl;
 import uk.co.cerihughes.mgm.model.interim.InterimEvent;
@@ -16,7 +18,8 @@ import java.io.IOException;
 import java.util.List;
 
 @Path("/")
-public class EventsService {
+@Api(value = "/")
+public class EventResource {
 
     private static final int SECONDS_IN_HOUR = 60 * 60;
     private static final long MILLIS_IN_HOUR = 1000 * SECONDS_IN_HOUR;
@@ -24,6 +27,7 @@ public class EventsService {
     @GET
     @Path("/mgm.json")
     @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Get all events", response = OutputEvent.class, responseContainer = "List")
     public Response events(@Context Request request) throws IOException {
         CacheControl cc = new CacheControl();
         cc.setMaxAge(SECONDS_IN_HOUR);

@@ -1,5 +1,8 @@
 package uk.co.cerihughes.mgm.model.output;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel("LocationApiModel")
 public class OutputLocation {
     private String name;
     private double latitude;

@@ -1,7 +1,10 @@
 package uk.co.cerihughes.mgm.model.output;
 
+import io.swagger.annotations.ApiModel;
+
 import java.time.LocalDate;
 
+@ApiModel("EventApiModel")
 public final class OutputEvent {
     private int number;
     private LocalDate date;

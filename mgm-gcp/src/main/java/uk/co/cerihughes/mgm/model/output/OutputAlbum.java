@@ -1,9 +1,11 @@
 package uk.co.cerihughes.mgm.model.output;
 
+import io.swagger.annotations.ApiModel;
 import uk.co.cerihughes.mgm.model.AlbumType;
 
 import java.util.List;
 
+@ApiModel("AlbumApiModel")
 public final class OutputAlbum {
     private AlbumType type;
     private String spotifyId;
