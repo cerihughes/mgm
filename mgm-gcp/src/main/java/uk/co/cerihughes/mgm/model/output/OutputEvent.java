@@ -1,20 +1,13 @@
 package uk.co.cerihughes.mgm.model.output;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import java.time.LocalDate;
 
 public final class OutputEvent {
-    @XmlAttribute(name = "number")
     private int number;
-    @XmlAttribute(name = "date")
     private LocalDate date;
-    @XmlAttribute(name = "location")
     private OutputLocation location;
-    @XmlAttribute(name = "classicAlbum")
     private OutputAlbum classicAlbum;
-    @XmlAttribute(name = "newAlbum")
     private OutputAlbum newAlbum;
-    @XmlAttribute(name = "playlist")
     private OutputPlaylist playlist;
 
     private OutputEvent(int number) {

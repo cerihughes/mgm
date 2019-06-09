@@ -1,13 +1,8 @@
 package uk.co.cerihughes.mgm.model.output;
 
-import javax.xml.bind.annotation.XmlAttribute;
-
 public class OutputLocation {
-    @XmlAttribute(name = "name")
     private String name;
-    @XmlAttribute(name = "latitude")
     private double latitude;
-    @XmlAttribute(name = "longitude")
     private double longitude;
 
     private OutputLocation(double latitude, double longitude) {

@@ -1,11 +1,7 @@
 package uk.co.cerihughes.mgm.model.output;
 
-import javax.xml.bind.annotation.XmlAttribute;
-
 public final class OutputImage {
-    @XmlAttribute(name = "size")
     private int size;
-    @XmlAttribute(name = "url")
     private String url;
 
     private OutputImage(int size) {

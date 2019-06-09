@@ -1,16 +1,11 @@
 package uk.co.cerihughes.mgm.model.output;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import java.util.List;
 
 public final class OutputPlaylist {
-    @XmlAttribute(name = "spotifyId")
     private String spotifyId;
-    @XmlAttribute(name = "name")
     private String name;
-    @XmlAttribute(name = "owner")
     private String owner;
-    @XmlAttribute(name = "images")
     private List<OutputImage> images;
 
     private OutputPlaylist() {

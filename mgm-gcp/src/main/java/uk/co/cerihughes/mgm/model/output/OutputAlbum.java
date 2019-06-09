@@ -2,21 +2,14 @@ package uk.co.cerihughes.mgm.model.output;
 
 import uk.co.cerihughes.mgm.model.AlbumType;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import java.util.List;
 
 public final class OutputAlbum {
-    @XmlAttribute(name = "type")
     private AlbumType type;
-    @XmlAttribute(name = "spotifyId")
     private String spotifyId;
-    @XmlAttribute(name = "name")
     private String name;
-    @XmlAttribute(name = "artist")
     private String artist;
-    @XmlAttribute(name = "score")
     private Float score;
-    @XmlAttribute(name = "images")
     private List<OutputImage> images;
 
     private OutputAlbum() {
