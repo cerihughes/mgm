@@ -3,6 +3,7 @@
 mgm-gcp/out/
 mgm-gcp/target/
 mgm-gcp/.idea/modules.xml
+mgm-gcp/.idea/libraries/
 workspace.xml
 usage.statistics.xml
 tasks.xml
