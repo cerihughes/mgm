@@ -40,7 +40,7 @@ public final class InterimEvent {
     }
 
     public static final class Builder {
-        private static DateTimeFormatter formatter = DateTimeFormatterFactory.formatter;
+        private static DateTimeFormatter formatter = DateTimeFormatterFactory.dateFormatter;
 
         private Integer number;
         private LocalDate date;

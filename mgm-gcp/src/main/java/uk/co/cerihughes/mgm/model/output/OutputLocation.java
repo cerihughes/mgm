@@ -1,13 +1,12 @@
 package uk.co.cerihughes.mgm.model.output;
 
-import com.google.gson.annotations.SerializedName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel("LocationApiModel")
 public class OutputLocation {
-    @SerializedName("name")
     private String name;
-    @SerializedName("latitude")
     private double latitude;
-    @SerializedName("longitude")
     private double longitude;
 
     private OutputLocation(double latitude, double longitude) {
@@ -15,6 +14,21 @@ public class OutputLocation {
 
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    @ApiModelProperty(required = true)
+    public String getName() {
+        return name;
+    }
+
+    @ApiModelProperty(required = true)
+    public double getLatitude() {
+        return latitude;
+    }
+
+    @ApiModelProperty(required = true)
+    public double getLongitude() {
+        return longitude;
     }
 
     public static final class Builder {

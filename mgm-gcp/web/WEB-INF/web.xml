@@ -3,12 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
+
+    <display-name>Music Geek Monthly</display-name>
+
+    <context-param>
+        <param-name>javax.ws.rs.core.Application</param-name>
+        <param-value>uk.co.cerihughes.mgm.MGMApplication</param-value>
+    </context-param>
+
     <servlet>
-        <servlet-name>MGMServlet</servlet-name>
-        <servlet-class>uk.co.cerihughes.mgm.servlet.MGMServlet</servlet-class>
+        <servlet-name>resteasy-servlet</servlet-name>
+        <servlet-class>
+            org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+        </servlet-class>
     </servlet>
+
     <servlet-mapping>
-        <servlet-name>MGMServlet</servlet-name>
-        <url-pattern>/mgm.json</url-pattern>
+        <servlet-name>resteasy-servlet</servlet-name>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
+
 </web-app>

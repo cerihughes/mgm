@@ -1,21 +1,39 @@
 package uk.co.cerihughes.mgm.model.output;
 
-import com.google.gson.annotations.SerializedName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
+@ApiModel("PlaylistApiModel")
 public final class OutputPlaylist {
-    @SerializedName("spotifyId")
     private String spotifyId;
-    @SerializedName("name")
     private String name;
-    @SerializedName("owner")
     private String owner;
-    @SerializedName("images")
     private List<OutputImage> images;
 
     private OutputPlaylist() {
         super();
+    }
+
+    @ApiModelProperty(required = true)
+    public String getSpotifyId() {
+        return spotifyId;
+    }
+
+    @ApiModelProperty(required = true)
+    public String getName() {
+        return name;
+    }
+
+    @ApiModelProperty(required = true)
+    public String getOwner() {
+        return owner;
+    }
+
+    @ApiModelProperty
+    public List<OutputImage> getImages() {
+        return images;
     }
 
     public static final class Builder {

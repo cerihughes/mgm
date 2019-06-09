@@ -1,27 +1,53 @@
 package uk.co.cerihughes.mgm.model.output;
 
-import com.google.gson.annotations.SerializedName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDate;
 
+@ApiModel("EventApiModel")
 public final class OutputEvent {
-    @SerializedName("number")
     private int number;
-    @SerializedName("date")
     private LocalDate date;
-    @SerializedName("location")
     private OutputLocation location;
-    @SerializedName("classicAlbum")
     private OutputAlbum classicAlbum;
-    @SerializedName("newAlbum")
     private OutputAlbum newAlbum;
-    @SerializedName("playlist")
     private OutputPlaylist playlist;
 
     private OutputEvent(int number) {
         super();
 
         this.number = number;
+    }
+
+    @ApiModelProperty(required = true)
+    public int getNumber() {
+        return number;
+    }
+
+    @ApiModelProperty
+    public LocalDate getDate() {
+        return date;
+    }
+
+    @ApiModelProperty
+    public OutputLocation getLocation() {
+        return location;
+    }
+
+    @ApiModelProperty
+    public OutputAlbum getClassicAlbum() {
+        return classicAlbum;
+    }
+
+    @ApiModelProperty
+    public OutputAlbum getNewAlbum() {
+        return newAlbum;
+    }
+
+    @ApiModelProperty
+    public OutputPlaylist getPlaylist() {
+        return playlist;
     }
 
     public static final class Builder {

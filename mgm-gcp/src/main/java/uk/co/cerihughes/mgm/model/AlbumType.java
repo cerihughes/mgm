@@ -1,10 +1,12 @@
 package uk.co.cerihughes.mgm.model;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
 
+@ApiModel("AlbumTypeApiModel")
 public enum AlbumType {
-    @SerializedName("classic")
+    @JsonProperty("classic")
     CLASSIC,
-    @SerializedName("new")
+    @JsonProperty("new")
     NEW
 }
