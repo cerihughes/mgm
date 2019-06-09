@@ -1,6 +1,7 @@
 package uk.co.cerihughes.mgm.model.output;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import uk.co.cerihughes.mgm.model.AlbumType;
 
 import java.util.List;
@@ -16,6 +17,36 @@ public final class OutputAlbum {
 
     private OutputAlbum() {
         super();
+    }
+
+    @ApiModelProperty(required = true)
+    public AlbumType getType() {
+        return type;
+    }
+
+    @ApiModelProperty
+    public String getSpotifyId() {
+        return spotifyId;
+    }
+
+    @ApiModelProperty(required = true)
+    public String getName() {
+        return name;
+    }
+
+    @ApiModelProperty(required = true)
+    public String getArtist() {
+        return artist;
+    }
+
+    @ApiModelProperty
+    public Float getScore() {
+        return score;
+    }
+
+    @ApiModelProperty
+    public List<OutputImage> getImages() {
+        return images;
     }
 
     public static final class Builder {

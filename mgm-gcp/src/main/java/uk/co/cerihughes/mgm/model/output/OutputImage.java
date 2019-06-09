@@ -1,6 +1,7 @@
 package uk.co.cerihughes.mgm.model.output;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel("ImageApiModel")
 public final class OutputImage {
@@ -11,6 +12,16 @@ public final class OutputImage {
         super();
 
         this.size = size;
+    }
+
+    @ApiModelProperty(required = true)
+    public int getSize() {
+        return size;
+    }
+
+    @ApiModelProperty(required = true)
+    public String getUrl() {
+        return url;
     }
 
     public static final class Builder {
