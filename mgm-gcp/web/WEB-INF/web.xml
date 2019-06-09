@@ -5,4 +5,22 @@
          version="2.5">
 
     <display-name>Music Geek Monthly</display-name>
+
+    <context-param>
+        <param-name>javax.ws.rs.core.Application</param-name>
+        <param-value>uk.co.cerihughes.mgm.MGMApplication</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>resteasy-servlet</servlet-name>
+        <servlet-class>
+            org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+        </servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>resteasy-servlet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>
