@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".ui.albumscores.AlbumScoresFragment">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ui.albumscores.AlbumScoresFragment">
 
+    <TableLayout
+            android:id="@+id/table_layout"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:padding="16dp"
+            android:stretchColumns="*">
+        <TableRow
+                android:id="@+id/segment_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true">
+            <TextView
+                    android:id="@+id/segment_one"
+                    style="@style/barGrapButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="SegmentOne"
+                    android:textColor="@color/colorPrimary" />
+
+            <TextView
+                    android:id="@+id/segment_two"
+                    style="@style/barGrapButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SegmentTwo" />
+
+            <TextView
+                    android:id="@+id/segment_three"
+                    style="@style/barGrapButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SegmentThree" />
+        </TableRow>
+    </TableLayout>
     <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/table_layout"
             android:scrollbars="vertical"
     />
 
