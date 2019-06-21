@@ -14,7 +14,6 @@
         <swagger.version>1.5.22</swagger.version>
     </properties>
 
-
     <build>
         <plugins>
             <plugin>

@@ -1,5 +1,6 @@
 .DS_Store
 
+mgm-gcp/classes/
 mgm-gcp/out/
 mgm-gcp/target/
 mgm-gcp/.idea/modules.xml
