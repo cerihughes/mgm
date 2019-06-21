@@ -7,7 +7,7 @@
     <display-name>Music Geek Monthly</display-name>
 
     <context-param>
-        <param-name>javax.ws.rs.core.Application</param-name>
+        <param-name>javax.ws.rs.Application</param-name>
         <param-value>uk.co.cerihughes.mgm.MGMApplication</param-value>
     </context-param>
 
