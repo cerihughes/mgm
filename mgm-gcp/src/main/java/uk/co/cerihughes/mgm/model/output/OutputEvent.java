@@ -3,12 +3,10 @@ package uk.co.cerihughes.mgm.model.output;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.time.LocalDate;
-
 @ApiModel("EventApiModel")
 public final class OutputEvent {
     private int number;
-    private LocalDate date;
+    private String date;
     private OutputLocation location;
     private OutputAlbum classicAlbum;
     private OutputAlbum newAlbum;
@@ -26,7 +24,7 @@ public final class OutputEvent {
     }
 
     @ApiModelProperty
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -52,7 +50,7 @@ public final class OutputEvent {
 
     public static final class Builder {
         private int number;
-        private LocalDate date;
+        private String date;
         private OutputLocation location;
         private OutputAlbum classicAlbum;
         private OutputAlbum newAlbum;
@@ -64,7 +62,7 @@ public final class OutputEvent {
             this.number = number;
         }
 
-        public Builder setDate(LocalDate date) {
+        public Builder setDate(String date) {
             this.date = date;
             return this;
         }
