@@ -3,8 +3,6 @@ package uk.co.cerihughes.mgm.model.interim;
 import org.junit.jupiter.api.Test;
 import uk.co.cerihughes.mgm.model.AlbumType;
 
-import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class InterimEventTest {
@@ -12,9 +10,7 @@ public class InterimEventTest {
     private static final String GOOD_NUMBER_STRING = "3";
     private static final String BAD_NUMBER_STRING = "EIGHT";
 
-    private static final LocalDate DATE = LocalDate.of(2018, 11, 13);
-    private static final String GOOD_DATE_STRING = "13/11/2018";
-    private static final String BAD_DATE_STRING = "2018-11-13";
+    private static final String DATE = "13/11/2018";
 
     private static final InterimAlbum ALBUM = new InterimAlbum.Builder()
             .setType(AlbumType.CLASSIC)
@@ -115,42 +111,6 @@ public class InterimEventTest {
     }
 
     @Test
-    void builderWithGoodDateString() {
-        final InterimEvent event = new InterimEvent.Builder()
-                .setNumber(NUMBER)
-                .setDate(GOOD_DATE_STRING)
-                .setClassicAlbum(ALBUM)
-                .setNewAlbum(ALBUM)
-                .setPlaylist(PLAYLIST)
-                .build();
-
-        assertNotNull(event);
-        assertEquals(NUMBER.intValue(), event.getNumber());
-        assertEquals(DATE, event.getDate());
-        assertEquals(ALBUM, event.getClassicAlbum());
-        assertEquals(ALBUM, event.getNewAlbum());
-        assertEquals(PLAYLIST, event.getPlaylist());
-    }
-
-    @Test
-    void builderWithBadDateString() {
-        final InterimEvent event = new InterimEvent.Builder()
-                .setNumber(NUMBER)
-                .setDate(BAD_DATE_STRING)
-                .setClassicAlbum(ALBUM)
-                .setNewAlbum(ALBUM)
-                .setPlaylist(PLAYLIST)
-                .build();
-
-        assertNotNull(event);
-        assertEquals(NUMBER.intValue(), event.getNumber());
-        assertNull(event.getDate());
-        assertEquals(ALBUM, event.getClassicAlbum());
-        assertEquals(ALBUM, event.getNewAlbum());
-        assertEquals(PLAYLIST, event.getPlaylist());
-    }
-
-    @Test
     void builderWithoutDate() {
         final InterimEvent event = new InterimEvent.Builder()
                 .setNumber(NUMBER)
@@ -169,29 +129,10 @@ public class InterimEventTest {
 
     @Test
     void builderWithNullDate() {
-        final LocalDate d = null;
+        final String date = null;
         final InterimEvent event = new InterimEvent.Builder()
                 .setNumber(NUMBER)
-                .setDate(d)
-                .setClassicAlbum(ALBUM)
-                .setNewAlbum(ALBUM)
-                .setPlaylist(PLAYLIST)
-                .build();
-
-        assertNotNull(event);
-        assertEquals(NUMBER.intValue(), event.getNumber());
-        assertNull(event.getDate());
-        assertEquals(ALBUM, event.getClassicAlbum());
-        assertEquals(ALBUM, event.getNewAlbum());
-        assertEquals(PLAYLIST, event.getPlaylist());
-    }
-
-    @Test
-    void builderWithNullDateString() {
-        final String s = null;
-        final InterimEvent event = new InterimEvent.Builder()
-                .setNumber(NUMBER)
-                .setDate(s)
+                .setDate(date)
                 .setClassicAlbum(ALBUM)
                 .setNewAlbum(ALBUM)
                 .setPlaylist(PLAYLIST)

@@ -15,7 +15,7 @@ public class MGMApplication extends Application {
     public MGMApplication() {
         BeanConfig beanConfig = new BeanConfig();
         beanConfig.setVersion("1.0.0");
-        beanConfig.setSchemes(new String[] { "https" });
+        beanConfig.setSchemes(new String[]{"https"});
         beanConfig.setHost("mgm-gcp.appspot.com");
         beanConfig.setTitle("Music Geek Monthly API");
         beanConfig.setBasePath("/");

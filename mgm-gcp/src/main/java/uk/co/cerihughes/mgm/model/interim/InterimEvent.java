@@ -1,14 +1,8 @@
 package uk.co.cerihughes.mgm.model.interim;
 
-import uk.co.cerihughes.mgm.data.DateTimeFormatterFactory;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
 public final class InterimEvent {
     private int number;
-    private LocalDate date;
+    private String date;
     private InterimAlbum classicAlbum;
     private InterimAlbum newAlbum;
     private InterimPlaylist playlist;
@@ -23,7 +17,7 @@ public final class InterimEvent {
         return number;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -40,10 +34,8 @@ public final class InterimEvent {
     }
 
     public static final class Builder {
-        private static DateTimeFormatter formatter = DateTimeFormatterFactory.dateFormatter;
-
         private Integer number;
-        private LocalDate date;
+        private String date;
         private InterimAlbum classicAlbum;
         private InterimAlbum newAlbum;
         private InterimPlaylist playlist;
@@ -62,17 +54,8 @@ public final class InterimEvent {
             return this;
         }
 
-        public Builder setDate(LocalDate date) {
+        public Builder setDate(String date) {
             this.date = date;
-            return this;
-        }
-
-        public Builder setDate(String dateString) {
-            try {
-                setDate(LocalDate.parse(dateString, formatter));
-            } catch (NullPointerException | DateTimeParseException e) {
-                // Swallow
-            }
             return this;
         }
 
