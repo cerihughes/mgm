@@ -3,12 +3,14 @@ package uk.co.cerihughes.mgm.model.interim
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-private const val SIZE = 64
-private const val GOOD_SIZE_STRING = "300"
-private const val BAD_SIZE_STRING = "5.6"
-private const val URL_DATA = "URL DATA"
-
 internal class InterimImageTest {
+    companion object {
+        private const val SIZE = 64
+        private const val GOOD_SIZE_STRING = "300"
+        private const val BAD_SIZE_STRING = "5.6"
+        private const val URL_DATA = "URL DATA"
+    }
+
     @Test
     fun builderWithGoodData() {
         val image = InterimImage(SIZE, URL_DATA)

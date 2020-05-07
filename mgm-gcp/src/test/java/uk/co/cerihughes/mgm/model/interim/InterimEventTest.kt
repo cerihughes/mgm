@@ -4,12 +4,14 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import uk.co.cerihughes.mgm.model.output.AlbumApiModel
 
-private const val NUMBER = 2
-private const val DATE = "13/11/2018"
-private val ALBUM = InterimAlbum(AlbumApiModel.TypeEnum.CLASSIC, "DATA")
-private val PLAYLIST = InterimPlaylist("DATA")
-
 class InterimEventTest {
+    companion object {
+        private const val NUMBER = 2
+        private const val DATE = "13/11/2018"
+        private val ALBUM = InterimAlbum(AlbumApiModel.TypeEnum.CLASSIC, "DATA")
+        private val PLAYLIST = InterimPlaylist("DATA")
+    }
+
     @Test
     fun builderWithGoodData() {
         val event = InterimEvent(NUMBER, DATE, ALBUM, ALBUM, PLAYLIST)

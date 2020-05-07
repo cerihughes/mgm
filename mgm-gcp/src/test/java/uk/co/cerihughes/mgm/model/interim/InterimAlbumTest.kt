@@ -4,11 +4,13 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import uk.co.cerihughes.mgm.model.output.AlbumApiModel
 
-private val ALBUM_TYPE = AlbumApiModel.TypeEnum.CLASSIC
-private const val ALBUM_DATA = "ALBUM DATA"
-private const val ALBUM_SCORE = 5.6f
-
 class InterimAlbumTest {
+    companion object {
+        private val ALBUM_TYPE = AlbumApiModel.TypeEnum.CLASSIC
+        private const val ALBUM_DATA = "ALBUM DATA"
+        private const val ALBUM_SCORE = 5.6f
+    }
+
     @Test
     fun builderWithGoodData() {
         val album = InterimAlbum(ALBUM_TYPE, ALBUM_DATA, ALBUM_SCORE)
