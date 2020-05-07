@@ -50,14 +50,13 @@ class DataTranslation {
     }
 
     private fun translateLocation(): LocationApiModel? {
-        return null
-//        val name = "Crafty Devil's Cellar"
-//        val latitude = 51.48227690
-//        val longitude = -3.20186570
-//        val model = LocationApiModel()
-//        model.name = name
-//        model.latitude = latitude
-//        model.longitude = longitude
-//        return model
+        val name = "Crafty Devil's Cellar"
+        val latitude = 51.48227690
+        val longitude = -3.20186570
+        val model = LocationApiModel()
+        model.name = name
+        model.latitude = latitude
+        model.longitude = longitude
+        return model
     }
 }
