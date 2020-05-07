@@ -1,7 +1,7 @@
 package uk.co.cerihughes.mgm.data.input;
 
 import com.google.gson.Gson;
-import uk.co.cerihughes.mgm.model.AlbumType;
+import org.openapitools.model.AlbumApiModel;
 import uk.co.cerihughes.mgm.model.input.GoogleSheetsEntry;
 import uk.co.cerihughes.mgm.model.input.GoogleSheetsFeed;
 import uk.co.cerihughes.mgm.model.input.GoogleSheetsModel;
@@ -15,7 +15,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class GoogleSheetsDataConverterImpl implements GoogleSheetsDataConverter {
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
 
     public List<InterimEvent> convert(String json) {
         ArrayList<InterimEvent> events = new ArrayList<>();
@@ -52,18 +52,18 @@ public class GoogleSheetsDataConverterImpl implements GoogleSheetsDataConverter 
     }
 
     private InterimAlbum createClassicAlbum(GoogleSheetsEntry entry) {
-        return createAlbum(AlbumType.CLASSIC,
+        return createAlbum(AlbumApiModel.TypeEnum.CLASSIC,
                 entry.resolvedClassicScore(),
                 entry.resolvedClassicAlbum());
     }
 
     private InterimAlbum createNewAlbum(GoogleSheetsEntry entry) {
-        return createAlbum(AlbumType.NEW,
+        return createAlbum(AlbumApiModel.TypeEnum.NEW,
                 entry.resolvedNewScore(),
                 entry.resolvedNewAlbum());
     }
 
-    private InterimAlbum createAlbum(AlbumType type, String score, String albumData) {
+    private InterimAlbum createAlbum(AlbumApiModel.TypeEnum type, String score, String albumData) {
         return new InterimAlbum.Builder()
                 .setType(type)
                 .setAlbumData(albumData)

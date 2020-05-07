@@ -10,7 +10,7 @@ import uk.co.cerihughes.mgm.translate.PlaylistTranslation;
 import java.io.IOException;
 
 public class SpotifyTranslationFactory {
-    private static SpotifyApi spotifyApi = new SpotifyApi.Builder()
+    private static final SpotifyApi spotifyApi = new SpotifyApi.Builder()
             .setClientId(Secrets.clientId)
             .setClientSecret(Secrets.clientSecret)
             .build();

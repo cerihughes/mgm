@@ -3,9 +3,9 @@ package uk.co.cerihughes.mgm.translate.spotify;
 import com.wrapper.spotify.SpotifyApi;
 import com.wrapper.spotify.model_objects.specification.Playlist;
 import com.wrapper.spotify.model_objects.specification.User;
+import org.openapitools.model.PlaylistApiModel;
 import uk.co.cerihughes.mgm.model.interim.InterimEvent;
 import uk.co.cerihughes.mgm.model.interim.InterimPlaylist;
-import uk.co.cerihughes.mgm.model.output.OutputPlaylist;
 import uk.co.cerihughes.mgm.translate.PlaylistTranslation;
 
 import java.util.HashMap;
@@ -15,10 +15,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public final class SpotifyPlaylistTranslation extends SpotifyTranslation implements PlaylistTranslation {
-    private SpotifyApi spotifyApi;
+    private final SpotifyApi spotifyApi;
 
-    private GetPlaylistOperation getPlaylistOperation = new GetPlaylistOperation();
-    private Map<String, Playlist> preprocessedPlaylists = new HashMap<>();
+    private final GetPlaylistOperation getPlaylistOperation = new GetPlaylistOperation();
+    private final Map<String, Playlist> preprocessedPlaylists = new HashMap<>();
 
     public SpotifyPlaylistTranslation(SpotifyApi spotifyApi) {
         super();
@@ -58,7 +58,7 @@ public final class SpotifyPlaylistTranslation extends SpotifyTranslation impleme
     }
 
     @Override
-    public OutputPlaylist translate(InterimPlaylist interimPlaylist) {
+    public PlaylistApiModel translate(InterimPlaylist interimPlaylist) {
         final String spotifyId = interimPlaylist.getPlaylistData();
         if (isValidData(spotifyId) == false) {
             return null;
@@ -76,11 +76,11 @@ public final class SpotifyPlaylistTranslation extends SpotifyTranslation impleme
 
         final String name = spotifyPlaylist.getName();
         final String owner = spotifyUser.getDisplayName();
-        return new OutputPlaylist.Builder()
-                .setSpotifyId(spotifyId)
-                .setName(name)
-                .setOwner(owner)
-                .setImages(getImages(spotifyPlaylist.getImages()))
-                .build();
+        PlaylistApiModel model = new PlaylistApiModel();
+        model.setSpotifyId(spotifyId);
+        model.setName(name);
+        model.setOwner(owner);
+        model.setImages(getImages(spotifyPlaylist.getImages()));
+        return model;
     }
 }

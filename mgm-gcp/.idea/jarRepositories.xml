@@ -17,6 +17,11 @@
       <option name="url" value="https://jcenter.bintray.com/maven2/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="sonatype-snapshots" />
+      <option name="name" value="sonatype-snapshots" />
+      <option name="url" value="https://oss.sonatype.org/content/repositories/snapshots" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="mvnrepository.com" />
       <option name="name" value="mvnrepository.com" />
       <option name="url" value="http://central.maven.org/maven2/" />

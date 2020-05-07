@@ -1,9 +1,9 @@
 package uk.co.cerihughes.mgm.model.interim;
 
-import uk.co.cerihughes.mgm.model.AlbumType;
+import org.openapitools.model.AlbumApiModel;
 
 public final class InterimAlbum {
-    private AlbumType type;
+    private AlbumApiModel.TypeEnum type;
     private String albumData;
     private Float score;
 
@@ -11,7 +11,7 @@ public final class InterimAlbum {
         super();
     }
 
-    public AlbumType getType() {
+    public AlbumApiModel.TypeEnum getType() {
         return type;
     }
 
@@ -24,11 +24,11 @@ public final class InterimAlbum {
     }
 
     public static final class Builder {
-        private AlbumType type;
+        private AlbumApiModel.TypeEnum type;
         private String albumData;
         private Float score;
 
-        public Builder setType(AlbumType type) {
+        public Builder setType(AlbumApiModel.TypeEnum type) {
             this.type = type;
             return this;
         }

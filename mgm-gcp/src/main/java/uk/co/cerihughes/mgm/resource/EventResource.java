@@ -2,10 +2,10 @@ package uk.co.cerihughes.mgm.resource;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.openapitools.model.EventApiModel;
 import uk.co.cerihughes.mgm.data.input.GoogleSheetsDataConverterImpl;
 import uk.co.cerihughes.mgm.data.input.GoogleSheetsDataLoaderImpl;
 import uk.co.cerihughes.mgm.model.interim.InterimEvent;
-import uk.co.cerihughes.mgm.model.output.OutputEvent;
 import uk.co.cerihughes.mgm.translate.DataTranslation;
 import uk.co.cerihughes.mgm.translate.googlesheets.GoogleSheetsTranslationFactory;
 import uk.co.cerihughes.mgm.translate.spotify.SpotifyTranslationFactory;
@@ -27,7 +27,7 @@ public class EventResource {
     @GET
     @Path("/mgm.json")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get all events", response = OutputEvent.class, responseContainer = "List")
+    @ApiOperation(value = "Get all events", response = EventApiModel.class, responseContainer = "List")
     public Response events(@Context Request request) throws IOException {
         CacheControl cc = new CacheControl();
         cc.setMaxAge(SECONDS_IN_HOUR);
@@ -50,7 +50,7 @@ public class EventResource {
         return rb.build();
     }
 
-    private List<OutputEvent> allEvents() throws IOException {
+    private List<EventApiModel> allEvents() throws IOException {
         final GoogleSheetsDataLoaderImpl loader = new GoogleSheetsDataLoaderImpl();
         final String input = loader.loadJsonData();
 

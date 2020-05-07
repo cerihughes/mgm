@@ -1,7 +1,7 @@
 package uk.co.cerihughes.mgm.model.interim;
 
 import org.junit.jupiter.api.Test;
-import uk.co.cerihughes.mgm.model.AlbumType;
+import org.openapitools.model.AlbumApiModel;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +13,7 @@ public class InterimEventTest {
     private static final String DATE = "13/11/2018";
 
     private static final InterimAlbum ALBUM = new InterimAlbum.Builder()
-            .setType(AlbumType.CLASSIC)
+            .setType(AlbumApiModel.TypeEnum.CLASSIC)
             .setAlbumData("DATA")
             .build();
 

@@ -1,12 +1,12 @@
 package uk.co.cerihughes.mgm.model.interim;
 
 import org.junit.jupiter.api.Test;
-import uk.co.cerihughes.mgm.model.AlbumType;
+import org.openapitools.model.AlbumApiModel;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class InterimAlbumTest {
-    private static final AlbumType ALBUM_TYPE = AlbumType.CLASSIC;
+    private static final AlbumApiModel.TypeEnum ALBUM_TYPE = AlbumApiModel.TypeEnum.CLASSIC;
     private static final String ALBUM_DATA = "ALBUM DATA";
     private static final Float ALBUM_SCORE = new Float(5.6);
     private static final String GOOD_SCORE_STRING = "4.2";

@@ -1,12 +1,12 @@
 package uk.co.cerihughes.mgm.translate.googlesheets;
 
 import com.google.gson.Gson;
+import org.openapitools.model.AlbumApiModel;
+import org.openapitools.model.ImageApiModel;
 import uk.co.cerihughes.mgm.model.input.GoogleSheetsAlbum;
 import uk.co.cerihughes.mgm.model.input.GoogleSheetsImage;
 import uk.co.cerihughes.mgm.model.interim.InterimAlbum;
 import uk.co.cerihughes.mgm.model.interim.InterimEvent;
-import uk.co.cerihughes.mgm.model.output.OutputAlbum;
-import uk.co.cerihughes.mgm.model.output.OutputImage;
 import uk.co.cerihughes.mgm.translate.AlbumTranslation;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class GoogleSheetsAlbumTranslation implements AlbumTranslation {
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
 
     private GoogleSheetsAlbum deserialise(String json) {
         return gson.fromJson(json, GoogleSheetsAlbum.class);
@@ -26,22 +26,22 @@ public class GoogleSheetsAlbumTranslation implements AlbumTranslation {
     }
 
     @Override
-    public OutputAlbum translate(InterimAlbum interimAlbum) {
+    public AlbumApiModel translate(InterimAlbum interimAlbum) {
         try {
             final GoogleSheetsAlbum album = deserialise(interimAlbum.getAlbumData());
-            return new OutputAlbum.Builder()
-                    .setType(interimAlbum.getType())
-                    .setName(album.getName())
-                    .setArtist(album.getArtist())
-                    .setScore(interimAlbum.getScore())
-                    .setImages(getImages(album.getImages()))
-                    .build();
+            final AlbumApiModel model = new AlbumApiModel();
+            model.setType(interimAlbum.getType());
+            model.setName(album.getName());
+            model.setArtist(album.getArtist());
+            model.setScore(interimAlbum.getScore());
+            model.setImages(getImages(album.getImages()));
+            return model;
         } catch (Exception e) {
             return null;
         }
     }
 
-    private List<OutputImage> getImages(List<GoogleSheetsImage> images) {
+    private List<ImageApiModel> getImages(List<GoogleSheetsImage> images) {
         if (images == null || images.isEmpty()) {
             return null;
         }
@@ -52,13 +52,13 @@ public class GoogleSheetsAlbumTranslation implements AlbumTranslation {
                 .collect(Collectors.toList());
     }
 
-    private OutputImage createOutputImage(GoogleSheetsImage image) {
+    private ImageApiModel createOutputImage(GoogleSheetsImage image) {
         final Integer size = image.getSize();
         final String url = image.getUrl();
 
-        return new OutputImage.Builder()
-                .setSize(size)
-                .setUrl(url)
-                .build();
+        ImageApiModel model = new ImageApiModel();
+        model.setSize(size);
+        model.setUrl(url);
+        return model;
     }
 }

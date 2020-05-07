@@ -3,10 +3,9 @@ package uk.co.cerihughes.mgm.translate.spotify;
 import com.wrapper.spotify.SpotifyApi;
 import com.wrapper.spotify.model_objects.specification.Album;
 import com.wrapper.spotify.model_objects.specification.ArtistSimplified;
-import uk.co.cerihughes.mgm.model.AlbumType;
+import org.openapitools.model.AlbumApiModel;
 import uk.co.cerihughes.mgm.model.interim.InterimAlbum;
 import uk.co.cerihughes.mgm.model.interim.InterimEvent;
-import uk.co.cerihughes.mgm.model.output.OutputAlbum;
 import uk.co.cerihughes.mgm.translate.AlbumTranslation;
 
 import java.util.ArrayList;
@@ -17,9 +16,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public final class SpotifyAlbumTranslation extends SpotifyTranslation implements AlbumTranslation {
-    private SpotifyApi spotifyApi;
+    private final SpotifyApi spotifyApi;
 
-    private GetAlbumsOperation getAlbumsOperation = new GetAlbumsOperation();
+    private final GetAlbumsOperation getAlbumsOperation = new GetAlbumsOperation();
     private Map<String, Album> preprocessedAlbums = new HashMap<>();
 
     public SpotifyAlbumTranslation(SpotifyApi spotifyApi) {
@@ -60,13 +59,13 @@ public final class SpotifyAlbumTranslation extends SpotifyTranslation implements
     }
 
     @Override
-    public OutputAlbum translate(InterimAlbum interimAlbum) {
+    public AlbumApiModel translate(InterimAlbum interimAlbum) {
         final String spotifyId = interimAlbum.getAlbumData();
         if (isValidData(spotifyId) == false) {
             return null;
         }
 
-        final AlbumType type = interimAlbum.getType();
+        final AlbumApiModel.TypeEnum type = interimAlbum.getType();
         if (type == null || spotifyId == null) {
             return null;
         }
@@ -84,13 +83,13 @@ public final class SpotifyAlbumTranslation extends SpotifyTranslation implements
         final ArtistSimplified spotifyArtist = spotifyArtists[0];
         final String name = spotifyAlbum.getName();
         final String artist = spotifyArtist.getName();
-        return new OutputAlbum.Builder()
-                .setType(type)
-                .setSpotifyId(spotifyId)
-                .setName(name)
-                .setArtist(artist)
-                .setScore(interimAlbum.getScore())
-                .setImages(getImages(spotifyAlbum.getImages()))
-                .build();
+        final AlbumApiModel album = new AlbumApiModel();
+        album.setType(type);
+        album.setSpotifyId(spotifyId);
+        album.setName(name);
+        album.setArtist(artist);
+        album.setScore(interimAlbum.getScore());
+        album.setImages(getImages(spotifyAlbum.getImages()));
+        return album;
     }
 }

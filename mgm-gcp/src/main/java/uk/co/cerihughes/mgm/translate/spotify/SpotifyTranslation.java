@@ -1,7 +1,7 @@
 package uk.co.cerihughes.mgm.translate.spotify;
 
 import com.wrapper.spotify.model_objects.specification.Image;
-import uk.co.cerihughes.mgm.model.output.OutputImage;
+import org.openapitools.model.ImageApiModel;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +13,7 @@ public abstract class SpotifyTranslation {
         return data != null && data.length() == 22;
     }
 
-    protected List<OutputImage> getImages(Image[] spotifyImages) {
+    protected List<ImageApiModel> getImages(Image[] spotifyImages) {
         if (spotifyImages == null || spotifyImages.length == 0) {
             return null;
         }
@@ -24,7 +24,7 @@ public abstract class SpotifyTranslation {
                 .collect(Collectors.toList());
     }
 
-    private OutputImage createOutputImage(Image spotifyImage) {
+    private ImageApiModel createOutputImage(Image spotifyImage) {
         final Integer width = spotifyImage.getWidth();
         final Integer height = spotifyImage.getHeight();
         final String url = spotifyImage.getUrl();
@@ -36,9 +36,9 @@ public abstract class SpotifyTranslation {
         int h = height == null ? 0 : height;
         int size = Math.max(w, h);
 
-        return new OutputImage.Builder()
-                .setSize(size)
-                .setUrl(url)
-                .build();
+        ImageApiModel model = new ImageApiModel();
+        model.setSize(size);
+        model.setUrl(url);
+        return model;
     }
 }

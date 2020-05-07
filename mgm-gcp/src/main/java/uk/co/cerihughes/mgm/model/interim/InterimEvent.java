@@ -1,7 +1,7 @@
 package uk.co.cerihughes.mgm.model.interim;
 
 public final class InterimEvent {
-    private int number;
+    private final int number;
     private String date;
     private InterimAlbum classicAlbum;
     private InterimAlbum newAlbum;
