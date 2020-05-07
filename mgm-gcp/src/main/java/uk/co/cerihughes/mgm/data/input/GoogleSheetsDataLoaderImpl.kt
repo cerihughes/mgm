@@ -1,10 +1,10 @@
 package uk.co.cerihughes.mgm.data.input
 
+import java.io.IOException
 import org.apache.http.HttpResponse
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.HttpClientBuilder
 import org.apache.http.util.EntityUtils
-import java.io.IOException
 
 class GoogleSheetsDataLoaderImpl : GoogleSheetsDataLoader {
     companion object {

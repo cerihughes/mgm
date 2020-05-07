@@ -2,17 +2,17 @@ package uk.co.cerihughes.mgm.resource
 
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
+import java.io.IOException
+import javax.ws.rs.GET
+import javax.ws.rs.Path
+import javax.ws.rs.Produces
+import javax.ws.rs.core.*
 import uk.co.cerihughes.mgm.data.input.GoogleSheetsDataConverterImpl
 import uk.co.cerihughes.mgm.data.input.GoogleSheetsDataLoaderImpl
 import uk.co.cerihughes.mgm.model.output.EventApiModel
 import uk.co.cerihughes.mgm.translate.DataTranslation
 import uk.co.cerihughes.mgm.translate.googlesheets.GoogleSheetsTranslationFactory.createAlbumTranslation
 import uk.co.cerihughes.mgm.translate.spotify.SpotifyTranslationFactory
-import java.io.IOException
-import javax.ws.rs.GET
-import javax.ws.rs.Path
-import javax.ws.rs.Produces
-import javax.ws.rs.core.*
 
 @Path("/")
 @Api(value = "/")

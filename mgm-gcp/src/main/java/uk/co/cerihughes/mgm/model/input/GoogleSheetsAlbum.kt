@@ -12,5 +12,4 @@ class GoogleSheetsAlbum {
     @SerializedName("images")
     val images: List<GoogleSheetsImage>? = null
         get() = field ?: emptyList()
-
 }

@@ -1,7 +1,6 @@
 package uk.co.cerihughes.mgm.translate.spotify
 
 import com.wrapper.spotify.model_objects.specification.Image
-
 import uk.co.cerihughes.mgm.model.output.ImageApiModel
 
 abstract class SpotifyTranslation {

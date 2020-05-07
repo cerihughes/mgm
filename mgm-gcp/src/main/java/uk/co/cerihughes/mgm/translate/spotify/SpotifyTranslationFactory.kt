@@ -2,9 +2,9 @@ package uk.co.cerihughes.mgm.translate.spotify
 
 import com.wrapper.spotify.SpotifyApi
 import com.wrapper.spotify.exceptions.SpotifyWebApiException
+import java.io.IOException
 import uk.co.cerihughes.mgm.translate.AlbumTranslation
 import uk.co.cerihughes.mgm.translate.PlaylistTranslation
-import java.io.IOException
 
 class SpotifyTranslationFactory {
     @Throws(IOException::class)

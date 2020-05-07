@@ -8,5 +8,4 @@ class GoogleSheetsImage {
 
     @SerializedName("url")
     val url: String? = null
-
 }

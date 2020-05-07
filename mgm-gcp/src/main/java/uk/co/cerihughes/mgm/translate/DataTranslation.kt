@@ -1,5 +1,6 @@
 package uk.co.cerihughes.mgm.translate
 
+import java.util.*
 import uk.co.cerihughes.mgm.model.interim.InterimAlbum
 import uk.co.cerihughes.mgm.model.interim.InterimEvent
 import uk.co.cerihughes.mgm.model.interim.InterimPlaylist
@@ -7,7 +8,6 @@ import uk.co.cerihughes.mgm.model.output.AlbumApiModel
 import uk.co.cerihughes.mgm.model.output.EventApiModel
 import uk.co.cerihughes.mgm.model.output.LocationApiModel
 import uk.co.cerihughes.mgm.model.output.PlaylistApiModel
-import java.util.*
 
 class DataTranslation {
     private val albumTranslations: MutableList<AlbumTranslation> = ArrayList()

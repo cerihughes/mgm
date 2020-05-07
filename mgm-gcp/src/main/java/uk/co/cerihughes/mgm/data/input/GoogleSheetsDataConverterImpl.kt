@@ -60,7 +60,7 @@ class GoogleSheetsDataConverterImpl : GoogleSheetsDataConverter {
     private fun createPlaylist(entry: GoogleSheetsEntry): InterimPlaylist? {
         val playlistData = entry.resolvedPlaylist()
         if (playlistData == null || playlistData.trim().isEmpty()) {
-            return null;
+            return null
         }
         return InterimPlaylist(playlistData)
     }
