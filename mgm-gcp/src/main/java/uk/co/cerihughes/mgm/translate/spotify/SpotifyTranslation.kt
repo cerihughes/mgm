@@ -10,7 +10,7 @@ abstract class SpotifyTranslation {
     }
 
     protected fun getImages(spotifyImages: Array<Image>?): List<ImageApiModel>? {
-        return if (spotifyImages == null || spotifyImages.size == 0) {
+        return if (spotifyImages == null || spotifyImages.isEmpty()) {
             null
         } else spotifyImages.mapNotNull { createOutputImage(it) }
     }

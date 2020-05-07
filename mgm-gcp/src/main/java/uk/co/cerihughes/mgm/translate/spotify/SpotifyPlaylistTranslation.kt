@@ -15,9 +15,9 @@ class SpotifyPlaylistTranslation(private val spotifyApi: SpotifyApi) : SpotifyTr
         preprocessPlaylists(interimEvents)
     }
 
-    protected fun preprocessPlaylists(interimEvents: List<InterimEvent>) {
+    protected fun preprocessPlaylists(interimEvents: List<InterimEvent?>) {
         val playlistIds = interimEvents
-                .mapNotNull { it.playlist.playlistData }
+                .mapNotNull { it?.playlist?.playlistData }
         if (playlistIds.isEmpty()) {
             return
         }

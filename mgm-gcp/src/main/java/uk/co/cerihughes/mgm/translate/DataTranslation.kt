@@ -8,8 +8,6 @@ import uk.co.cerihughes.mgm.model.output.EventApiModel
 import uk.co.cerihughes.mgm.model.output.LocationApiModel
 import uk.co.cerihughes.mgm.model.output.PlaylistApiModel
 import java.util.*
-import java.util.stream.Collectors
-import java.util.stream.Stream
 
 class DataTranslation {
     private val albumTranslations: MutableList<AlbumTranslation> = ArrayList()
@@ -23,12 +21,9 @@ class DataTranslation {
     }
 
     fun translate(interimEvents: List<InterimEvent>): List<EventApiModel> {
-        Stream.concat(albumTranslations.stream(), playlistTranslations.stream())
-                .forEach { e: EntityTranslation -> e.preprocess(interimEvents) }
-        return interimEvents.stream()
-                .map { e: InterimEvent -> translate(e) }
-                .filter { obj: EventApiModel? -> Objects.nonNull(obj) }
-                .collect(Collectors.toList())
+        (albumTranslations + playlistTranslations).forEach { it.preprocess(interimEvents) }
+        return interimEvents
+                .mapNotNull { translate(it) }
     }
 
     private fun translate(interimEvent: InterimEvent): EventApiModel {
@@ -38,34 +33,20 @@ class DataTranslation {
         model.classicAlbum = translate(interimEvent.classicAlbum)
         model.newAlbum = translate(interimEvent.newAlbum)
         model.location = translateLocation()
-        model.playlist = translate(interimEvent.playlist)
+        model.playlist = interimEvent.playlist?.let { translate(it) }
         return model
     }
 
-    private fun translate(interimAlbum: InterimAlbum?): AlbumApiModel? {
-        if (interimAlbum == null) {
-            return null
-        }
-        for (albumTranslation in albumTranslations) {
-            val outputAlbum = albumTranslation.translate(interimAlbum)
-            if (outputAlbum != null) {
-                return outputAlbum
-            }
-        }
-        return null
+    private fun translate(interimAlbum: InterimAlbum): AlbumApiModel? {
+        return albumTranslations
+                .mapNotNull { it.translate(interimAlbum) }
+                .firstOrNull()
     }
 
-    private fun translate(interimPlaylist: InterimPlaylist?): PlaylistApiModel? {
-        if (interimPlaylist == null) {
-            return null
-        }
-        for (playlistTranslation in playlistTranslations) {
-            val outputPlaylist = playlistTranslation.translate(interimPlaylist)
-            if (outputPlaylist != null) {
-                return outputPlaylist
-            }
-        }
-        return null
+    private fun translate(interimPlaylist: InterimPlaylist): PlaylistApiModel? {
+        return playlistTranslations
+                .mapNotNull { it.translate(interimPlaylist) }
+                .firstOrNull()
     }
 
     private fun translateLocation(): LocationApiModel? {

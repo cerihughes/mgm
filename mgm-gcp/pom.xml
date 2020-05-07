@@ -211,5 +211,5 @@
             <version>${threetenbp-version}</version>
         </dependency>
     </dependencies>
-
+    <packaging>war</packaging>
 </project>

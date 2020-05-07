@@ -23,11 +23,11 @@ class GoogleSheetsAlbumTranslation : AlbumTranslation {
         // No-op
     }
 
-    override fun translate(interimAlbum: InterimAlbum): AlbumApiModel {
-        val album = deserialise(interimAlbum.albumData)
+    override fun translate(interimAlbum: InterimAlbum): AlbumApiModel? {
+        val album = deserialise(interimAlbum.albumData) ?: return null
         val model = AlbumApiModel()
         model.type = interimAlbum.type
-        model.name = album!!.name
+        model.name = album.name
         model.artist = album.artist
         model.score = interimAlbum.score
         model.images = getImages(album.images)
