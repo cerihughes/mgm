@@ -1,12 +1,12 @@
 package uk.co.cerihughes.mgm.translate
 
-import org.openapitools.model.AlbumApiModel
-import org.openapitools.model.EventApiModel
-import org.openapitools.model.LocationApiModel
-import org.openapitools.model.PlaylistApiModel
 import uk.co.cerihughes.mgm.model.interim.InterimAlbum
 import uk.co.cerihughes.mgm.model.interim.InterimEvent
 import uk.co.cerihughes.mgm.model.interim.InterimPlaylist
+import uk.co.cerihughes.mgm.model.output.AlbumApiModel
+import uk.co.cerihughes.mgm.model.output.EventApiModel
+import uk.co.cerihughes.mgm.model.output.LocationApiModel
+import uk.co.cerihughes.mgm.model.output.PlaylistApiModel
 import java.util.*
 import java.util.stream.Collectors
 import java.util.stream.Stream

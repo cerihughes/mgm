@@ -1,6 +1,6 @@
 package uk.co.cerihughes.mgm.model.interim;
 
-import org.openapitools.model.AlbumApiModel;
+import uk.co.cerihughes.mgm.model.output.AlbumApiModel;
 
 public final class InterimAlbum {
     private AlbumApiModel.TypeEnum type;

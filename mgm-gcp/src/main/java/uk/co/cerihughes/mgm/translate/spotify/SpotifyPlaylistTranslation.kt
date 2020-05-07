@@ -2,9 +2,9 @@ package uk.co.cerihughes.mgm.translate.spotify
 
 import com.wrapper.spotify.SpotifyApi
 import com.wrapper.spotify.model_objects.specification.Playlist
-import org.openapitools.model.PlaylistApiModel
 import uk.co.cerihughes.mgm.model.interim.InterimEvent
 import uk.co.cerihughes.mgm.model.interim.InterimPlaylist
+import uk.co.cerihughes.mgm.model.output.PlaylistApiModel
 import uk.co.cerihughes.mgm.translate.PlaylistTranslation
 import java.util.*
 

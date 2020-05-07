@@ -1,7 +1,7 @@
 package uk.co.cerihughes.mgm.model.interim;
 
 import org.junit.jupiter.api.Test;
-import org.openapitools.model.AlbumApiModel;
+import uk.co.cerihughes.mgm.model.output.AlbumApiModel;
 
 import static org.junit.jupiter.api.Assertions.*;
 

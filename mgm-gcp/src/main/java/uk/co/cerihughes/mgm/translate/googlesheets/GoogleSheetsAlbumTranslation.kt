@@ -1,12 +1,12 @@
 package uk.co.cerihughes.mgm.translate.googlesheets
 
 import com.google.gson.Gson
-import org.openapitools.model.AlbumApiModel
-import org.openapitools.model.ImageApiModel
 import uk.co.cerihughes.mgm.model.input.GoogleSheetsAlbum
 import uk.co.cerihughes.mgm.model.input.GoogleSheetsImage
 import uk.co.cerihughes.mgm.model.interim.InterimAlbum
 import uk.co.cerihughes.mgm.model.interim.InterimEvent
+import uk.co.cerihughes.mgm.model.output.AlbumApiModel
+import uk.co.cerihughes.mgm.model.output.ImageApiModel
 import uk.co.cerihughes.mgm.translate.AlbumTranslation
 
 class GoogleSheetsAlbumTranslation : AlbumTranslation {

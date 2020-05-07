@@ -1,13 +1,13 @@
 package uk.co.cerihughes.mgm.data.input;
 
 import com.google.gson.Gson;
-import org.openapitools.model.AlbumApiModel;
 import uk.co.cerihughes.mgm.model.input.GoogleSheetsEntry;
 import uk.co.cerihughes.mgm.model.input.GoogleSheetsFeed;
 import uk.co.cerihughes.mgm.model.input.GoogleSheetsModel;
 import uk.co.cerihughes.mgm.model.interim.InterimAlbum;
 import uk.co.cerihughes.mgm.model.interim.InterimEvent;
 import uk.co.cerihughes.mgm.model.interim.InterimPlaylist;
+import uk.co.cerihughes.mgm.model.output.AlbumApiModel;
 
 import java.util.ArrayList;
 import java.util.List;
