@@ -14,7 +14,7 @@ class DataTranslation {
         private var chapterArtsCenter = createLocation("Chapter Arts Center", 51.4829773, -3.2056947)
         private var tenFeetTall = createLocation("10 Feet Tall", 51.4805194, -3.1810703)
         private var craftyDevilsCellar = createLocation("Crafty Devil's Cellar", 51.48227690, -3.20186570)
-        private var stayAtHome = createLocation("#stayathome", 0.0, 0.0)
+        private var stayAtHome = createLocation("#StayAtHome", 0.0, 0.0)
 
         private fun createLocation(name: String, latitude: Double, longitude: Double): LocationApiModel {
             val model = LocationApiModel()
