@@ -28,13 +28,10 @@ class SpotifyAlbumTranslation(private val spotifyApi: SpotifyApi) : SpotifyTrans
 
     override fun translate(interimAlbum: InterimAlbum): AlbumApiModel? {
         val spotifyId = interimAlbum.albumData
-        if (isValidData(spotifyId) == false) {
+        if (!isValidData(spotifyId)) {
             return null
         }
-        val type = interimAlbum.type
-        if (type == null || spotifyId == null) {
-            return null
-        }
+
         val spotifyAlbum = preprocessedAlbums[spotifyId] ?: return null
         val spotifyArtists = spotifyAlbum.artists
         if (spotifyArtists == null || spotifyArtists.size == 0) {
@@ -44,7 +41,7 @@ class SpotifyAlbumTranslation(private val spotifyApi: SpotifyApi) : SpotifyTrans
         val name = spotifyAlbum.name
         val artist = spotifyArtist.name
         val album = AlbumApiModel()
-        album.type = type
+        album.type = interimAlbum.type
         album.spotifyId = spotifyId
         album.name = name
         album.artist = artist
