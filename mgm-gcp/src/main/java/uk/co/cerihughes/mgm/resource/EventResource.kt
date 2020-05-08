@@ -66,7 +66,7 @@ class EventResource {
     }
 
     private val lastModified: Long
-        private get() {
+        get() {
             val now = System.currentTimeMillis()
             val mod = now % MILLIS_IN_HOUR
             return now - mod
