@@ -150,7 +150,6 @@
             <scope>test</scope>
         </dependency>
 
-
         <!-- Coped from openapigenerator -->
         <dependency>
             <groupId>io.swagger</groupId>
