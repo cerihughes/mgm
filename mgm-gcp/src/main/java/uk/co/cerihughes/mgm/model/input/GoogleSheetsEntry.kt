@@ -23,33 +23,18 @@ class GoogleSheetsEntry {
 
     @SerializedName("gsx\$newscore")
     private val newScore: GoogleSheetsString? = null
-    fun resolvedId(): String? {
-        return resolve(id)
-    }
 
-    fun resolvedDate(): String? {
-        return resolve(date)
-    }
+    @SerializedName("gsx\$location")
+    private val location: GoogleSheetsString? = null
 
-    fun resolvedPlaylist(): String? {
-        return resolve(playlist)
-    }
-
-    fun resolvedClassicAlbum(): String? {
-        return resolve(classicAlbum)
-    }
-
-    fun resolvedClassicScore(): String? {
-        return resolve(classicScore)
-    }
-
-    fun resolvedNewAlbum(): String? {
-        return resolve(newAlbum)
-    }
-
-    fun resolvedNewScore(): String? {
-        return resolve(newScore)
-    }
+    fun resolvedId() = resolve(id)
+    fun resolvedDate() = resolve(date)
+    fun resolvedPlaylist() = resolve(playlist)
+    fun resolvedClassicAlbum() = resolve(classicAlbum)
+    fun resolvedClassicScore() = resolve(classicScore)
+    fun resolvedNewAlbum() = resolve(newAlbum)
+    fun resolvedNewScore() = resolve(newScore)
+    fun resolvedLocation() = resolve(location)
 
     private fun resolve(string: GoogleSheetsString?): String? {
         return string?.resolvedValue()

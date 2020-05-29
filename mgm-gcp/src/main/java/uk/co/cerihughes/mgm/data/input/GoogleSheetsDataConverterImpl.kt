@@ -5,6 +5,7 @@ import uk.co.cerihughes.mgm.model.input.GoogleSheetsEntry
 import uk.co.cerihughes.mgm.model.input.GoogleSheetsModel
 import uk.co.cerihughes.mgm.model.interim.InterimAlbum
 import uk.co.cerihughes.mgm.model.interim.InterimEvent
+import uk.co.cerihughes.mgm.model.interim.InterimLocation
 import uk.co.cerihughes.mgm.model.interim.InterimPlaylist
 import uk.co.cerihughes.mgm.model.output.AlbumApiModel
 
@@ -34,7 +35,8 @@ class GoogleSheetsDataConverterImpl : GoogleSheetsDataConverter {
                 entry.resolvedDate(),
                 classicAlbum,
                 newAlbum,
-                createPlaylist(entry))
+                createPlaylist(entry),
+                createLocation(entry))
     }
 
     private fun createClassicAlbum(entry: GoogleSheetsEntry): InterimAlbum? {
@@ -63,5 +65,13 @@ class GoogleSheetsDataConverterImpl : GoogleSheetsDataConverter {
             return null
         }
         return InterimPlaylist(playlistData)
+    }
+
+    private fun createLocation(entry: GoogleSheetsEntry): InterimLocation? {
+        val locationData = entry.resolvedLocation()
+        if (locationData == null || locationData.trim().isEmpty()) {
+            return null
+        }
+        return InterimLocation(locationData)
     }
 }
