@@ -3,6 +3,7 @@ package uk.co.cerihughes.mgm.translate
 import java.util.*
 import uk.co.cerihughes.mgm.model.interim.InterimAlbum
 import uk.co.cerihughes.mgm.model.interim.InterimEvent
+import uk.co.cerihughes.mgm.model.interim.InterimLocation
 import uk.co.cerihughes.mgm.model.interim.InterimPlaylist
 import uk.co.cerihughes.mgm.model.output.AlbumApiModel
 import uk.co.cerihughes.mgm.model.output.EventApiModel
@@ -15,6 +16,13 @@ class DataTranslation {
         private var tenFeetTall = createLocation("10 Feet Tall", 51.4805194, -3.1810703)
         private var craftyDevilsCellar = createLocation("Crafty Devil's Cellar", 51.48227690, -3.20186570)
         private var stayAtHome = createLocation("#StayAtHome", 0.0, 0.0)
+
+        private val locationMap = mapOf(
+                Pair("CHAPTER", chapterArtsCenter),
+                Pair("TEN_FEET", tenFeetTall),
+                Pair("CRAFTY", craftyDevilsCellar),
+                Pair("ZOOM", stayAtHome)
+        )
 
         private fun createLocation(name: String, latitude: Double, longitude: Double): LocationApiModel {
             val model = LocationApiModel()
@@ -47,7 +55,7 @@ class DataTranslation {
         model.date = interimEvent.date
         model.classicAlbum = translate(interimEvent.classicAlbum)
         model.newAlbum = translate(interimEvent.newAlbum)
-        model.location = translateLocation(interimEvent.number)
+        model.location = translate(interimEvent.location)
         model.playlist = interimEvent.playlist?.let { translate(it) }
         return model
     }
@@ -64,12 +72,9 @@ class DataTranslation {
                 .firstOrNull()
     }
 
-    private fun translateLocation(number: Int): LocationApiModel? {
-        return when (number) {
-            in 1..45 -> chapterArtsCenter
-            in 46..48 -> tenFeetTall
-            in 74..75 -> stayAtHome
-            else -> craftyDevilsCellar
-        }
+    private fun translate(interimLocation: InterimLocation?): LocationApiModel {
+        return interimLocation?.locationData?.let {
+            locationMap.get(it)
+        } ?: craftyDevilsCellar
     }
 }

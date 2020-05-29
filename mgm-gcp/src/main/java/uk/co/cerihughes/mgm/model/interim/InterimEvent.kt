@@ -5,5 +5,6 @@ data class InterimEvent(
     val date: String? = null,
     val classicAlbum: InterimAlbum,
     val newAlbum: InterimAlbum,
-    val playlist: InterimPlaylist? = null
+    val playlist: InterimPlaylist? = null,
+    val location: InterimLocation? = null
 )
