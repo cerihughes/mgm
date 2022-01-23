@@ -1,16 +1,7 @@
 .DS_Store
 
-mgm-gcp/classes/
-mgm-gcp/out/
-mgm-gcp/target/
-mgm-gcp/.idea/modules.xml
-mgm-gcp/.idea/libraries/
-workspace.xml
-usage.statistics.xml
-tasks.xml
-*.iml
+.gradle/
+build/
+mgm-gcp/src/gen/
 
 Secrets.*
-mgm-gcp/.idea/vcs.xml
-mgm-gcp/.idea/misc.xml
-mgm-gcp/.idea/compiler.xml
