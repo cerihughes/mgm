@@ -1,7 +1,7 @@
 package uk.co.cerihughes.mgm.translate.spotify
 
-import com.wrapper.spotify.SpotifyApi
-import com.wrapper.spotify.exceptions.SpotifyWebApiException
+import se.michaelthelin.spotify.SpotifyApi
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException
 import uk.co.cerihughes.mgm.Secrets
 import uk.co.cerihughes.mgm.translate.AlbumTranslation
 import uk.co.cerihughes.mgm.translate.PlaylistTranslation
