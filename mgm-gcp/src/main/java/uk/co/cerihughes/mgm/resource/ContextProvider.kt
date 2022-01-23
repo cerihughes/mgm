@@ -13,15 +13,12 @@ import javax.ws.rs.ext.Provider
 @Provider
 @Produces(MediaType.APPLICATION_JSON)
 class ContextProvider : ContextResolver<ObjectMapper> {
-    private val objectMapper: ObjectMapper
+    private val objectMapper: ObjectMapper = ObjectMapper()
+        .enable(SerializationFeature.INDENT_OUTPUT)
+        .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+        .setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
+
     override fun getContext(objectType: Class<*>?): ObjectMapper {
         return objectMapper
-    }
-
-    init {
-        objectMapper = ObjectMapper()
-                .enable(SerializationFeature.INDENT_OUTPUT)
-                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
-                .setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
     }
 }

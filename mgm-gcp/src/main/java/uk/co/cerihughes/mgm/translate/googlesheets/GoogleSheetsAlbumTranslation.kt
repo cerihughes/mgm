@@ -40,12 +40,12 @@ class GoogleSheetsAlbumTranslation : AlbumTranslation {
         } else images.mapNotNull { createOutputImage(it) }
     }
 
-    private fun createOutputImage(image: GoogleSheetsImage): ImageApiModel {
+    private fun createOutputImage(image: GoogleSheetsImage): ImageApiModel? {
         val size = image.size
         val url = image.url
         val model = ImageApiModel()
-        model.size = size
-        model.url = url
+        model.size = size ?: return null
+        model.url = url ?: return null
         return model
     }
 }

@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName
 
 class GoogleSheetsAlbum {
     @SerializedName("name")
-    val name: String? = null
+    val name: String = ""
 
     @SerializedName("artist")
-    val artist: String? = null
+    val artist: String = ""
 
     @SerializedName("images")
     val images: List<GoogleSheetsImage>? = null

@@ -2,7 +2,6 @@ package uk.co.cerihughes.mgm.translate.spotify
 
 import com.wrapper.spotify.SpotifyApi
 import com.wrapper.spotify.model_objects.specification.Playlist
-import java.util.*
 import uk.co.cerihughes.mgm.model.interim.InterimEvent
 import uk.co.cerihughes.mgm.model.interim.InterimPlaylist
 import uk.co.cerihughes.mgm.model.output.PlaylistApiModel
@@ -17,7 +16,7 @@ class SpotifyPlaylistTranslation(private val spotifyApi: SpotifyApi) : SpotifyTr
 
     protected fun preprocessPlaylists(interimEvents: List<InterimEvent?>) {
         val playlistIds = interimEvents
-                .mapNotNull { it?.playlist?.playlistData }
+            .mapNotNull { it?.playlist?.playlistData }
         if (playlistIds.isEmpty()) {
             return
         }

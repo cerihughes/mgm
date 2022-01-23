@@ -24,8 +24,8 @@ class GetAlbumsOperation {
     private fun executeBatch(spotifyApi: SpotifyApi, vararg albumIds: String): List<Album> {
         return try {
             val getSeveralAlbumsRequest = spotifyApi.getSeveralAlbums(*albumIds)
-                    .market(CountryCode.GB)
-                    .build()
+                .market(CountryCode.GB)
+                .build()
             Arrays.asList(*getSeveralAlbumsRequest.execute())
         } catch (e: Exception) {
             emptyList()

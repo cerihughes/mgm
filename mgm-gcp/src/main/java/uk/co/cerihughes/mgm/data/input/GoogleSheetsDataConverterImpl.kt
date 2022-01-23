@@ -1,8 +1,5 @@
 package uk.co.cerihughes.mgm.data.input
 
-import com.google.gson.Gson
-import uk.co.cerihughes.mgm.model.input.GoogleSheetsEntry
-import uk.co.cerihughes.mgm.model.input.GoogleSheetsModel
 import uk.co.cerihughes.mgm.model.interim.InterimAlbum
 import uk.co.cerihughes.mgm.model.interim.InterimEvent
 import uk.co.cerihughes.mgm.model.interim.InterimLocation
@@ -10,45 +7,38 @@ import uk.co.cerihughes.mgm.model.interim.InterimPlaylist
 import uk.co.cerihughes.mgm.model.output.AlbumApiModel
 
 class GoogleSheetsDataConverterImpl : GoogleSheetsDataConverter {
-    private val gson = Gson()
-    override fun convert(json: String): List<InterimEvent>? {
-        val model = deserialise(json) ?: return null
-        val feed = model.feed ?: return null
-        return feed
-                .resolvedEntries()
-                .mapNotNull { createEvent(it) }
+    override fun convert(data: List<List<String>>): List<InterimEvent>? {
+        return data.mapNotNull { createEvent(it) }
     }
 
-    private fun deserialise(json: String): GoogleSheetsModel? {
-        return try {
-            gson.fromJson(json, GoogleSheetsModel::class.java)
-        } catch (_: Exception) {
-            null
-        }
-    }
-
-    private fun createEvent(entry: GoogleSheetsEntry): InterimEvent? {
+    private fun createEvent(entry: List<String>): InterimEvent? {
         val eventId = entry.resolvedId()?.toIntOrNull() ?: return null
         val classicAlbum = createClassicAlbum(entry) ?: return null
         val newAlbum = createNewAlbum(entry) ?: return null
-        return InterimEvent(eventId,
-                entry.resolvedDate(),
-                classicAlbum,
-                newAlbum,
-                createPlaylist(entry),
-                createLocation(entry))
+        return InterimEvent(
+            eventId,
+            entry.resolvedDate(),
+            classicAlbum,
+            newAlbum,
+            createPlaylist(entry),
+            createLocation(entry)
+        )
     }
 
-    private fun createClassicAlbum(entry: GoogleSheetsEntry): InterimAlbum? {
-        return createAlbum(AlbumApiModel.TypeEnum.CLASSIC,
-                entry.resolvedClassicScore(),
-                entry.resolvedClassicAlbum())
+    private fun createClassicAlbum(entry: List<String>): InterimAlbum? {
+        return createAlbum(
+            AlbumApiModel.TypeEnum.CLASSIC,
+            entry.resolvedClassicScore(),
+            entry.resolvedClassicAlbum()
+        )
     }
 
-    private fun createNewAlbum(entry: GoogleSheetsEntry): InterimAlbum? {
-        return createAlbum(AlbumApiModel.TypeEnum.NEW,
-                entry.resolvedNewScore(),
-                entry.resolvedNewAlbum())
+    private fun createNewAlbum(entry: List<String>): InterimAlbum? {
+        return createAlbum(
+            AlbumApiModel.TypeEnum.NEW,
+            entry.resolvedNewScore(),
+            entry.resolvedNewAlbum()
+        )
     }
 
     private fun createAlbum(type: AlbumApiModel.TypeEnum, score: String?, albumData: String?): InterimAlbum? {
@@ -59,7 +49,7 @@ class GoogleSheetsDataConverterImpl : GoogleSheetsDataConverter {
         return InterimAlbum(type, albumData, score?.toFloatOrNull())
     }
 
-    private fun createPlaylist(entry: GoogleSheetsEntry): InterimPlaylist? {
+    private fun createPlaylist(entry: List<String>): InterimPlaylist? {
         val playlistData = entry.resolvedPlaylist()
         if (playlistData == null || playlistData.trim().isEmpty()) {
             return null
@@ -67,7 +57,7 @@ class GoogleSheetsDataConverterImpl : GoogleSheetsDataConverter {
         return InterimPlaylist(playlistData)
     }
 
-    private fun createLocation(entry: GoogleSheetsEntry): InterimLocation? {
+    private fun createLocation(entry: List<String>): InterimLocation? {
         val locationData = entry.resolvedLocation()
         if (locationData == null || locationData.trim().isEmpty()) {
             return null
@@ -75,3 +65,12 @@ class GoogleSheetsDataConverterImpl : GoogleSheetsDataConverter {
         return InterimLocation(locationData)
     }
 }
+
+private fun List<String>.resolvedId(): String? = getOrNull(0)
+private fun List<String>.resolvedDate(): String? = getOrNull(1)
+private fun List<String>.resolvedPlaylist(): String? = getOrNull(2)
+private fun List<String>.resolvedClassicScore(): String? = getOrNull(3)
+private fun List<String>.resolvedClassicAlbum(): String? = getOrNull(4)
+private fun List<String>.resolvedNewScore(): String? = getOrNull(5)
+private fun List<String>.resolvedNewAlbum(): String? = getOrNull(6)
+private fun List<String>.resolvedLocation(): String? = getOrNull(7)
