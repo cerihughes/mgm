@@ -2,7 +2,6 @@ package uk.co.cerihughes.mgm.translate.spotify
 
 import com.wrapper.spotify.SpotifyApi
 import com.wrapper.spotify.model_objects.specification.Album
-import java.util.*
 import uk.co.cerihughes.mgm.model.interim.InterimAlbum
 import uk.co.cerihughes.mgm.model.interim.InterimEvent
 import uk.co.cerihughes.mgm.model.output.AlbumApiModel
@@ -17,13 +16,13 @@ class SpotifyAlbumTranslation(private val spotifyApi: SpotifyApi) : SpotifyTrans
 
     protected fun preprocessAlbums(interimEvents: List<InterimEvent>) {
         val interimAlbums = interimEvents
-                .flatMap { listOf(it.classicAlbum, it.newAlbum) }
+            .flatMap { listOf(it.classicAlbum, it.newAlbum) }
         val albumIds = interimAlbums
-                .map { it.albumData }
-                .filter { isValidData(it) }
+            .map { it.albumData }
+            .filter { isValidData(it) }
         val albums = getAlbumsOperation.execute(spotifyApi, albumIds)
         preprocessedAlbums = albums.map { it.id to it }
-                .toMap()
+            .toMap()
     }
 
     override fun translate(interimAlbum: InterimAlbum): AlbumApiModel? {

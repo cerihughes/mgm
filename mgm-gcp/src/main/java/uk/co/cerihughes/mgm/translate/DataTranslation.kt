@@ -1,6 +1,5 @@
 package uk.co.cerihughes.mgm.translate
 
-import java.util.*
 import uk.co.cerihughes.mgm.model.interim.InterimAlbum
 import uk.co.cerihughes.mgm.model.interim.InterimEvent
 import uk.co.cerihughes.mgm.model.interim.InterimLocation
@@ -18,10 +17,10 @@ class DataTranslation {
         private var stayAtHome = createLocation("#StayAtHome", 0.0, 0.0)
 
         private val locationMap = mapOf(
-                Pair("CHAPTER", chapterArtsCenter),
-                Pair("TEN_FEET", tenFeetTall),
-                Pair("CRAFTY", craftyDevilsCellar),
-                Pair("ZOOM", stayAtHome)
+            Pair("CHAPTER", chapterArtsCenter),
+            Pair("TEN_FEET", tenFeetTall),
+            Pair("CRAFTY", craftyDevilsCellar),
+            Pair("ZOOM", stayAtHome)
         )
 
         private fun createLocation(name: String, latitude: Double, longitude: Double): LocationApiModel {
@@ -46,7 +45,7 @@ class DataTranslation {
     fun translate(interimEvents: List<InterimEvent>): List<EventApiModel> {
         (albumTranslations + playlistTranslations).forEach { it.preprocess(interimEvents) }
         return interimEvents
-                .mapNotNull { translate(it) }
+            .mapNotNull { translate(it) }
     }
 
     private fun translate(interimEvent: InterimEvent): EventApiModel {
@@ -62,14 +61,14 @@ class DataTranslation {
 
     private fun translate(interimAlbum: InterimAlbum): AlbumApiModel? {
         return albumTranslations
-                .mapNotNull { it.translate(interimAlbum) }
-                .firstOrNull()
+            .mapNotNull { it.translate(interimAlbum) }
+            .firstOrNull()
     }
 
     private fun translate(interimPlaylist: InterimPlaylist): PlaylistApiModel? {
         return playlistTranslations
-                .mapNotNull { it.translate(interimPlaylist) }
-                .firstOrNull()
+            .mapNotNull { it.translate(interimPlaylist) }
+            .firstOrNull()
     }
 
     private fun translate(interimLocation: InterimLocation?): LocationApiModel {

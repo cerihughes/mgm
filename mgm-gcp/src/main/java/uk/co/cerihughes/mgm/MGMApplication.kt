@@ -1,9 +1,8 @@
 package uk.co.cerihughes.mgm
 
-import java.util.*
-import javax.ws.rs.core.Application
 import uk.co.cerihughes.mgm.resource.ContextProvider
 import uk.co.cerihughes.mgm.resource.EventResource
+import javax.ws.rs.core.Application
 
 class MGMApplication : Application() {
     override fun getClasses(): Set<Class<*>> {
