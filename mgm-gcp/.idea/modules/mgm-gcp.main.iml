@@ -4,7 +4,6 @@
     <option name="hasAppGradlePlugin" value="true" />
     <option name="gradleBuildDir" value="$MODULE_DIR$/../../build" />
     <option name="gradleModuleDir" value="$MODULE_DIR$/../.." />
-    <option name="webAppDir" value="src/main/webapp" />
   </component>
   <component name="FacetManager">
     <facet type="app-engine-flexible" name="Google App Engine Flexible">
