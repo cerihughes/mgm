@@ -57,9 +57,9 @@ repositories {
 }
 
 ext {
-    jettyVersion = '9.4.6.v20170531'
-    resteasyVersion = '3.1.3.Final'
-    jacksonVersion = '2.10.3'
+    jettyVersion = '9.4.44.v20210927'
+    resteasyVersion = '4.5.11.Final'
+    jacksonVersion = '2.10.5'
 }
 
 dependencies {
