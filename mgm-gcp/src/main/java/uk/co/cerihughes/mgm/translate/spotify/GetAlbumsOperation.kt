@@ -1,8 +1,8 @@
 package uk.co.cerihughes.mgm.translate.spotify
 
 import com.neovisionaries.i18n.CountryCode
-import com.wrapper.spotify.SpotifyApi
-import com.wrapper.spotify.model_objects.specification.Album
+import se.michaelthelin.spotify.SpotifyApi
+import se.michaelthelin.spotify.model_objects.specification.Album
 import java.util.*
 
 class GetAlbumsOperation {

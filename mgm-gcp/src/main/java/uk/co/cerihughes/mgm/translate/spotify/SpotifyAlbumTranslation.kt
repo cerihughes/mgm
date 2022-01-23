@@ -1,7 +1,7 @@
 package uk.co.cerihughes.mgm.translate.spotify
 
-import com.wrapper.spotify.SpotifyApi
-import com.wrapper.spotify.model_objects.specification.Album
+import se.michaelthelin.spotify.SpotifyApi
+import se.michaelthelin.spotify.model_objects.specification.Album
 import uk.co.cerihughes.mgm.model.interim.InterimAlbum
 import uk.co.cerihughes.mgm.model.interim.InterimEvent
 import uk.co.cerihughes.mgm.model.output.AlbumApiModel

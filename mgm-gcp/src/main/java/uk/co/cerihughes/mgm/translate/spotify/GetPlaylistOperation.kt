@@ -1,7 +1,7 @@
 package uk.co.cerihughes.mgm.translate.spotify
 
-import com.wrapper.spotify.SpotifyApi
-import com.wrapper.spotify.model_objects.specification.Playlist
+import se.michaelthelin.spotify.SpotifyApi
+import se.michaelthelin.spotify.model_objects.specification.Playlist
 import java.io.IOException
 
 class GetPlaylistOperation {
